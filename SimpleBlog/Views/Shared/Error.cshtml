@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Błąd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Action("MainMenuShow", "Home", new { activeSubmenu = 2 })
+@Html.Action("BackToTopShow", "Home")
+<div class="mkd-content">
+    <div class="mkd-content-inner">
+        @Html.Action("TrendingArticlesShow", "Home")
+        @Html.Action("BreadcrumbsShow", "Home")
+        <div class="mkd-container">
+            <div class="mkd-container-inner">
+                <div class="mkd-two-columns-75-25  mkd-content-has-sidebar clearfix" style="position: relative;">
+                    <div class="mkd-column1 mkd-content-left-from-sidebar">
+                        <div class="mkd-column-inner">
+                            <div class="mkd-page-not-found">
+                                <span class="mkd-not-found-icon ion-sad-outline"></span>
+                                <h1>
+                                    Przepraszamy.......Wystąpił błąd
+                                </h1>
+                                <h4>
+                                    Błąd został zgłoszony do administratora. Spróbuj później...
+                                </h4>
+                                <a href="#" target="_self" class="mkd-btn mkd-btn-medium mkd-btn-solid">
+                                    <span class="mkd-btn-text">Powrót na stronę główną</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mkd-column2">
+                        <div class="mkd-column-inner">
+                            @Html.Action("SocialAsideShow", "Home")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

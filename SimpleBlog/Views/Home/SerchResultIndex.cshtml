@@ -1,0 +1,30 @@
+﻿@model SimpleBlog.ViewModels.SearchResultIndexViewModel
+@{
+    ViewBag.Title = "simpleblog - wyniki wyszukiwania";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Action("MainMenuShow", "Home", new { activeSubmenu = 2 })
+@Html.Action("BackToTopShow", "Home")
+
+<div class="mkd-content">
+    <div class="mkd-content-inner">
+        @Html.Action("TrendingArticlesShow", "Home")
+        @Html.Action("BreadcrumbsShow")
+        <div class="mkd-container">
+            <div class="mkd-container-inner clearfix">
+                <div class="mkd-two-columns-75-25  mkd-content-has-sidebar clearfix">
+                    <div class="mkd-column1 mkd-content-left-from-sidebar">
+                        <div class="mkd-column-inner">
+                            @Html.Action("SearchResultList", "Home", new { page = Model.PageNumber, searchText = Model.SearchText })
+                        </div>
+                    </div>
+                    <div class="mkd-column2">
+                        <div class="mkd-column-inner">
+                            @Html.Action("SocialAsideShow")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model SimpleBlog.ViewModels.ArticlesManageViewModel
+@{
+    ViewBag.Title = "Zarządzanie artykułami";
+    Layout = "~/Views/Shared/_LayoutBackofficeArticlesManage.cshtml";
+}
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <div class="mkd-full-width">
+            <div class="mkd-full-width-inner">
+                <div class="vc_row wpb_row vc_row-fluid mkd-section vc_custom_1456923366162 mkd-content-aligment-left mkd-grid-section" style="">
+                    <div class="clearfix mkd-section-inner">
+                        <div class="mkd-section-inner-margin clearfix">
+                            <div class="wpb_column vc_column_container vc_col-sm-8 vc_col-lg-10 vc_col-md-10">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper">
+                                        <div class="wpb_widgetised_column wpb_content_element">
+                                            <div class="wpb_wrapper">
+
+                                                @*<div>@Html.ActionLink("Dodaj", "ArticleAdd", "Backoffice")</div>*@
+                                                <br/><br />
+                                                <div class="widget mkd-rpc-holder">
+                                                    <div class="mkd-section-title-holder clearfix">
+                                                        <span class="mkd-st-title">Zarządzanie artykułami</span>
+                                                    </div>
+                                                    <div class="mkd-rpc-inner">
+                                                    
+                                                        <ul>
+                                                            <li><div class="mkd-rpc-content" style="width:85%">
+                                                                        <h6 class="mkd-rpc-link">
+                                                                            <a itemprop="url" href="@Url.Action("ArticleAdd", "Backoffice")" style="margin-left:10px;">Dodaj artykuł</a>
+                                                                        </h6>
+                                                                    </div></li>
+                                                            @foreach (var article in Model.ArticlesList)
+                                                            {
+                                                                <li>
+                                                                    <div class="mkd-rpc-content" style="width:85%">
+                                                                        <h6 class="mkd-rpc-link">
+                                                                            <a itemprop="url" href="#" style="margin-left:10px;">@article.Title.ToString()</a>
+                                                                        </h6>
+                                                                    </div>
+                                                                    <div style="display:inline-block">@Html.ActionLink("Edytuj", "ArticleAdd", new { articleId = article.ArticleId })</div>
+                                                                    <div style="margin-left: 50px; display:inline-block">@Html.ActionLink("Usuń", "ArticleDelete", new { ArticleId = article.ArticleId })</div>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                @Html.ActionLink("Powrót", "Index", "Backoffice")</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
+

@@ -1,0 +1,23 @@
+﻿@model SimpleBlog.ViewModels.ArticlesCategoriesManageViewModel
+@{
+    ViewBag.Title = "Zarządzanie kategoriami artykułów";
+    Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
+}
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <h2>Zarządzanie kategoriami artykułów</h2>
+        <p>@Html.ActionLink("Powrót", "Index", "Backoffice")</p>
+        foreach (var category in Model.ArticleCategories)
+        {
+            <p>@category.Name.ToString() @Html.ActionLink("Usuń", "ArticlesCategoriesDelete", new { ArticleCategoryName = category.Name })</p>
+        }
+        using (Html.BeginForm("ArticlesCategoriesManage", "Backoffice", FormMethod.Post))
+        {
+            @Html.TextBoxFor(o => o.ArticlesCategoryAddName, new { @class = "input-text", @placeholder = "Nazwa kategorii..." })
+            <input type="submit" class="button" method="post" value="Dodaj kategorię" />
+        }
+    }
+}

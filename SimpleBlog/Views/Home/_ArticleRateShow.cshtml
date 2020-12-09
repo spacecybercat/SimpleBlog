@@ -1,0 +1,88 @@
+﻿@model SimpleBlog.ViewModels.ArticleRateViewModel
+<section id="artRatingHolder">
+    <div class="mkd-ratings-holder">
+        @if (Model.IsRated == false)
+        {
+            <div class="mkd-ratings-text-holder">
+                <h6 class="mkd-ratings-text-title">Oceń ten artykuł</h6>
+                <div class="mkd-ratings-stars-holder">
+                    <div class="mkd-ratings-stars-inner" style="display:inline-block!important; position: relative!important; vertical-align: top!important; line-height: 1em!important;">
+                        <span id="mkd-rating-1">
+                            @Ajax.ActionLink(" ", "ArticleRateAdd", "Home", new { ArticleId = Model.ArticleId, RateValue = 1 }, new AjaxOptions() { UpdateTargetId = "artRatingHolder", HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith })
+                        </span>
+                        <span id="mkd-rating-2">
+                            @Ajax.ActionLink(" ", "ArticleRateAdd", "Home", new { ArticleId = Model.ArticleId, RateValue = 2 }, new AjaxOptions() { UpdateTargetId = "artRatingHolder", HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith })
+                        </span>
+                        <span id="mkd-rating-3">
+                            @Ajax.ActionLink(" ", "ArticleRateAdd", "Home", new { ArticleId = Model.ArticleId, RateValue = 3 }, new AjaxOptions() { UpdateTargetId = "artRatingHolder", HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith })
+                        </span>
+                        <span id="mkd-rating-4">
+                            @Ajax.ActionLink(" ", "ArticleRateAdd", "Home", new { ArticleId = Model.ArticleId, RateValue = 4 }, new AjaxOptions() { UpdateTargetId = "artRatingHolder", HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith })
+                        </span>
+                        <span id="mkd-rating-5">
+                            @Ajax.ActionLink(" ", "ArticleRateAdd", "Home", new { ArticleId = Model.ArticleId, RateValue = 5 }, new AjaxOptions() { UpdateTargetId = "artRatingHolder", HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith }, new { @style="margin:0"})
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="mkd-ratings-message-holder">
+                <div class="mkd-rating-value"></div>
+                <div class="mkd-rating-message"></div>
+            </div>
+        }
+        else
+        {
+            <div class="mkd-ratings-text-holder">
+                <h6 class="mkd-ratings-text-title">Oceń ten artykuł</h6>
+                <div class="mkd-ratings-stars-holder">
+                    <div class="mkd-ratings-stars-innerr mkd-ratings-rated">
+                        @if (Model.RateValue >= 1)
+                        {
+                        <span id="mkd-rating-1" class="mkd-hover-rating-star mkd-active-rating-star"></span> 
+                        }
+                        else
+                        {
+                            <span id="mkd-rating-1"></span>
+                        }
+                        @if (Model.RateValue >= 2)
+                            {
+                            <span id = "mkd-rating-2" class="mkd-hover-rating-star mkd-active-rating-star"></span> 
+                        }
+                        else
+                        {
+                            <span id="mkd-rating-2"></span>
+                        }
+                        @if (Model.RateValue >= 3)
+                        {
+                            <span id="mkd-rating-3" class="mkd-hover-rating-star mkd-active-rating-star"></span>
+                        }
+                        else
+                        {
+                            <span id="mkd-rating-3"></span>
+                        }
+                        @if (Model.RateValue >= 4)
+                        {
+                            <span id="mkd-rating-4" class="mkd-hover-rating-star mkd-active-rating-star"></span>
+                        }
+                        else
+                        {
+                            <span id="mkd-rating-4"></span>
+                        }
+                        @if (Model.RateValue >= 5)
+                        {
+                            <span id="mkd-rating-5" class="mkd-hover-rating-star mkd-active-rating-star"></span>
+                        }
+                        else
+                        {
+                            <span id="mkd-rating-5"></span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="mkd-ratings-message-holder">
+                <div class="mkd-rating-value" style="display:block;">Średnia ocena tego artykułu to: @Model.RateAvarage.ToString("F")</div>
+                <div class="mkd-rating-message" style="display:block;">Dziekujemy za oddanie głosu.</div>
+            </div>
+        }
+    </div>
+</section>

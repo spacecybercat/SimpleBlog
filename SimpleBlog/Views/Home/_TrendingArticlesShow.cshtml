@@ -1,0 +1,17 @@
+﻿@model SimpleBlog.ViewModels.TrendingArticlesViewModel
+@using SimpleBlog.Infrastructure
+<section class="mkd-content-top-holder">
+    <div class="mkd-grid">
+        <div class="mkd-bn-holder">
+            <div class="mkd-bn-title">Popularne<span class="mkd-bn-icon ion-ios-arrow-forward"></span></div>
+            <ul class="mkd-bn-slide">
+                @foreach(var article in Model.TrendingArticles)
+                {
+                    <li class="mkd-bn-text">
+                        <a href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = article.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(article.Title) })">@article.Title</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

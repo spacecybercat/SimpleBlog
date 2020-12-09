@@ -1,0 +1,13 @@
+﻿@model SimpleBlog.ViewModels.SearchBarViewModel
+@using (Html.BeginForm("SerchResultIndex", "Home", FormMethod.Post))
+{
+    <div class="mkd-form-holder">
+        <div class="mkd-column-left">
+            @Html.TextBoxFor(m => m.searchText, htmlAttributes: new { @placeholder = "Szukana treść", id = "searchTxt", @name = "searchTxt", @class = "mkd-search-field", required = "required" })
+        </div>
+        <div class="mkd-column-right">
+            <input type="submit" class="mkd-search-submit" value="Szukaj" />
+        </div>
+    </div>
+}
+

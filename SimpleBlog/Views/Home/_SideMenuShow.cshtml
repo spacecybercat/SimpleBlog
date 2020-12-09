@@ -1,0 +1,40 @@
+﻿@model List<SimpleBlog.Models.ArticlesCategory>
+@using SimpleBlog.Infrastructure 
+<aside class="mkd-side-menu right">
+    <div class="mkd-close-side-menu-holder">
+        <div class="mkd-close-side-menu-holder-inner">
+            <a href="#" target="_self" class="mkd-close-side-menu">
+                <span aria-hidden="false" class="icon_close"></span>
+            </a>
+        </div>
+    </div>
+    <div class="widget mkd-image-widget" style="padding: 25px 0 0 0">
+        <a href="#" target="_self"><img src="~/Content/Images/LOGO-FOOTER.png" alt="a" /></a>
+    </div>
+    <div id="nav_menu-2" class="widget mkd-sidearea widget_nav_menu">
+        <div class="mkd-section-title-holder clearfix mkd-pattern-dark">
+            <span class="mkd-st-title">Kategorie</span>
+        </div>
+        <div class="menu-sidearea-menu-2-container">
+            <ul id="menu-sidearea-menu-2" class="menu">
+                @foreach (var category in Model)
+                {
+                    <li id="menu-item-2-@category.ArticlesCategoryId" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21"><a href="@Url.Action("IndexByCategory", "Home", new { pageNumber = 1, articlesCategoryId = category.ArticlesCategoryId, ArticlesCategory = UrlHelpers.GetTitleLink(category.Name)})">@category.Name</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div id="nav_menu-5" class="widget mkd-sidearea widget_nav_menu">
+        <div class="mkd-section-title-holder clearfix mkd-pattern-dark">
+            <span class="mkd-st-title">Kontakt</span>
+        </div>
+        <div class="menu-sidearea-menu-1-container">
+            <ul id="menu-sidearea-menu-6" class="menu">
+                <li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-61"><a href="@Url.Action("CookiesPolicyShow", "Home")">Polityka cookies</a></li>
+                <li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-62"><a href="@Url.Action("PrivacyPolicyShow", "Home")">Polityka prywatności</a></li>
+                <li id="menu-item-63" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-63"><a href="@Url.Action("TermsOfUseShow", "Home")">Regulamin</a></li>
+                <li id="menu-item-64" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-64"><a href="@Url.Action("ContactShow", "Home")">Napisz do nas</a></li>
+            </ul>
+        </div>
+    </div>
+</aside>

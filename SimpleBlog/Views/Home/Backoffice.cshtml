@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Backoffice";
+    Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
+}
+
+<div class="mkd-content">
+    <div class="mkd-content-inner">
+        <div class="mkd-container">
+            <div class="mkd-container-inner clearfix">
+                <div class="woocommerce">
+                    <h2>Login</h2>
+                    <form method="post" class="login">
+                        <p class="form-row form-row-wide">
+                            <label for="username">Username or email address <span class="required">*</span></label>
+                            <input type="text" class="input-text" name="username" id="username" value="" />
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label for="password">Password <span class="required">*</span></label>
+                            <input class="input-text" type="password" name="password" id="password" />
+                        </p>
+                        <p class="form-row">
+                            <input type="hidden" id="_wpnonce" name="_wpnonce" value="756920f208" /><input type="hidden" name="_wp_http_referer" value="/my-account/" /> <input type="submit" class="button" name="login" value="Login" />
+                            <label for="rememberme" class="inline">
+                                <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember me
+                            </label>
+                        </p>
+                        <p class="lost_password">
+                            <a href="https://discussion.mikado-themes.com/my-account/lost-password/">Lost your password?</a>
+                        </p>
+                    </form>
+                </div>
+                <div class="mkd-comment-holder clearfix" id="comments">
+                    <div class="mkd-comment-number">
+                        <span class="mkd-section-title-holder clearfix ">
+                            <span class="mkd-st-title">
+                                No Comments
+                            </span>
+                        </span>
+                    </div>
+                    <div class="mkd-comments">
+                        <p>Sorry, the comment form is closed at this time.</p>
+                    </div>
+                </div>
+                <div class="mkd-comment-form">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

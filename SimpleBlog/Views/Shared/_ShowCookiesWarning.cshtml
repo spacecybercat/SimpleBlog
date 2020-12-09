@@ -1,0 +1,27 @@
+﻿<div id="cookie-warning">
+    @if (Request.Cookies.Get("simpleblog-cookiesAcceptation") == null)
+    {
+        <div class="cookies-warning">
+            @using (Ajax.BeginForm("SetCookiesWarning", "Home", new AjaxOptions() { UpdateTargetId = "cookie-warning", HttpMethod = "POST", InsertionMode = InsertionMode.ReplaceWith }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="mkd-container">
+                    <div class="mkd-container-inner">
+                        <div class="woocommerce" style="justify-content:center!important">
+                            <p style="text-align:center; font-size:18px;">
+                                W naszym serwisie stosujemy pliki cookies m.in w celach: świadczenia usług, analiz, statystyk... <br />
+                                <a href="@Url.Action("CookiesPolicyShow","Home")" style="color:whitesmoke">Czytaj więcej...</a>
+                            </p>
+                            <input type="submit" value="Zamknij" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+    }
+</div>
+
+

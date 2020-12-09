@@ -1,0 +1,18 @@
+﻿@model SimpleBlog.ViewModels.AccountViewModel.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(o => o.AvatarFile)
+    @Html.TextBoxFor(o => o.Nickname, new { @placeholder = "Nick, widoczny dla innych..." })
+    @Html.TextBoxFor(o => o.Email, new { @placeholder = "E-mail...", @type = "email" })
+    @Html.PasswordFor(o => o.Password, new { @placeholder = "Hasło...", @type = "password" })
+    @Html.PasswordFor(o => o.ConfirmPassword, new { @placeholder = "Powtórz hasło...", @type = "password" })
+    <input type="file" name="file" id="file" value="@Model.AvatarFile" />
+    <input type="submit" value="Zarejestruj" />
+}
+

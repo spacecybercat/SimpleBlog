@@ -1,0 +1,56 @@
+﻿@model SimpleBlog.ViewModels.ArticleCommentsViewModel
+<section id="comments">
+    <div class="mkd-comment-holder clearfix">
+        <header class="mkd-comment-number">
+            <span class="mkd-section-title-holder clearfix ">
+                <span class="mkd-st-title">Komentarze</span>
+            </span>
+        </header>
+        <div class="mkd-comments">
+            <ul class="mkd-comment-list">
+                @if (Model.ArticleCommentsList.Count() > 0)
+                {
+                    foreach (var comment in Model.ArticleCommentsList)
+                    {
+                        <li>
+                            <article id="article-comment-@comment.ArticlesCommentId">
+                                <div class="mkd-comment clearfix">
+                                    <div class="mkd-comment-text-and-info">
+                                        <div class="mkd-comment-info-and-links">
+                                            <h6 class="mkd-comment-name">
+                                                <span class="mkd-comment-author">@comment.UserId</span>
+                                            </h6>
+                                        </div>
+                                        <div class="mkd-comment-text">
+                                            <div class="mkd-text-holder" id="comment-@comment.ArticlesCommentId">
+                                                <p style="white-space: pre-wrap;">@Html.Raw(Server.HtmlDecode(comment.Text))</p>
+                                                <span class="mkd-comment-date">@Convert.ToDateTime(comment.DateOfPublish).ToString("dd/MM/yyyy HH:mm")</span>
+                                                <br />
+                                                <div id="comment-rates-@comment.ArticlesCommentId">
+                                                    @Html.Action("AricleCommentRatesShow", new { ArticleCommentId = comment.ArticlesCommentId })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li>
+                        <div class="mkd-comment clearfix">
+                            <div class="mkd-comment-text">
+                                <div class="mkd-text-holder">
+                                    <p>Ten artykuł nie ma jeszcze komentarzy! Skomentuj jako pierwszy!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>
+<div style="color:red; margin-bottom:10px;">@Model.ValidationMsn</div>

@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
+}
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <aside class="mkd-side-menu right" style="position:sticky;height:100%;">
+            <div class="mkd-close-side-menu-holder">
+                <div class="mkd-close-side-menu-holder-inner">
+                    <a href="#" target="_self" class="mkd-close-side-menu">
+                        <span aria-hidden="true" class="icon_close"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="widget mkd-image-widget" style="padding: 25px 0 0 0">
+                <a href="#" target="_self"><img src="~/Content/Images/LOGO-FOOTER.png" alt="a" /></a>
+            </div>
+            <div id="nav_menu-2" class="widget mkd-sidearea widget_nav_menu">
+                <div class="mkd-section-title-holder clearfix mkd-pattern-dark">
+                    <span class="mkd-st-title">Zarządzaj</span>
+                </div>
+                <div class="menu-sidearea-menu-2-container">
+                    <ul id="menu-sidearea-menu-2" class="menu">
+                        <li id="menu-item-2-1" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21">@Html.ActionLink("Artykuły", "ArticlesManage")</li>
+                        <li id="menu-item-2-2" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21">@Html.ActionLink("Kategorie artykułów", "ArticlesCategoriesManage")</li>
+                        <li id="menu-item-2-3" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21">@Html.ActionLink("Zarządzanie tagami", "TagsManageShow")</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    }
+}
+

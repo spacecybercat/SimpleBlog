@@ -1,0 +1,210 @@
+﻿@model SimpleBlog.ViewModels.ArticleSinglePageShowViewModel
+@using SimpleBlog.Infrastructure
+@using SimpleBlog.Models
+@{
+    ViewBag.Title = "SimpleBlog - " + Model.ArticleMain.Title;
+    Layout = "~/Views/Shared/_Layout_ArticleSingle.cshtml";
+    ViewBag.OGurl = "https://simpleblog.domena" + Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticleMain.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticleMain.Title) });
+    ViewBag.OGtitle = Model.ArticleMain.Title;
+    ViewBag.OGdescription = Model.ArticleMain.IntroText;
+    ViewBag.OGimg = "https://simpleblog.domena" + Url.ArticleImagePath(Model.ArticlePhotosMain.Where(w => w.Width == 1300).First().FilePath);
+}
+@Html.Action("MainMenuShow", "Home", new { activeSubmenu = 2 })
+@Html.Action("BackToTopShow", "Home")
+
+<div class="mkd-content">
+    <div class="mkd-content-inner">
+        @Html.Action("TrendingArticlesShow", "Home")
+        @Html.Action("BreadcrumbsShow")
+        <div class="mkd-container">
+            <div class="mkd-container-inner">
+                <div class="mkd-two-columns-75-25  mkd-content-has-sidebar clearfix" style="position: relative;">
+                    <div class="mkd-column1 mkd-content-left-from-sidebar">
+                        <div class="mkd-column-inner">
+                            <main class="mkd-blog-holder mkd-blog-single">
+                                <article id="post-205" class="post-205 post type-post status-publish format-standard has-post-thumbnail hentry category-fun tag-cilmate tag-preparation tag-research tag-summer">
+                                    <div class="mkd-post-content">
+                                        <header class="mkd-post-image-area">
+                                            <div class="mkd-post-info-category">
+                                                <a href="@Url.Action("IndexByCategory", "Home", new { pageNumber = 1, articlesCategoryId = Model.ArticleMain.CategoryId, ArticlesCategory = Model.ArticlesCategoriesList.Where(n => n.ArticlesCategoryId == Model.ArticleMain.CategoryId).First().Name})" rel="category tag">@Model.ArticlesCategoriesList.Where(n => n.ArticlesCategoryId == Model.ArticleMain.CategoryId).First().Name</a>
+                                            </div>
+                                            @if (String.IsNullOrEmpty(Model.ArticleMain.VideoLink))
+                                            {
+                                                if (Model.ArticlePhotosMain.Where(w => w.Width == 1300).Count() == 1)
+                                                {
+                                                    <div class="mkd-post-image">
+                                                        <img width="1300" height="722" src="@Url.ArticleImagePath(Model.ArticlePhotosMain.Where(w => w.Width == 1300).First().FilePath)" class="attachment-discussion_post_feature_image size-discussion_post_feature_image wp-post-image" alt="a">
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="mkd-blog-gallery clearfix">
+                                                        <ul class="mkd-pg-slider">
+                                                            @foreach (var photo in Model.ArticlePhotosMain.Where(w => w.Width == 1300))
+                                                            {
+                                                                <li class="mkd-pg-slides">
+                                                                    <img width="1300" height="722" src="@Url.ArticleImagePath(photo.FilePath)" class="attachment-discussion_post_feature_image size-discussion_post_feature_image" alt="a" sizes="(max-width: 1300px) 100vw, 1300px" />
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="fluidvids">
+                                                    @*<iframe src="https://player.vimeo.com/video/28048446?title=0&amp;byline=0&amp;portrait=0" width="1300" height="684" allowfullscreen="" class="fluidvids-item" data-fluidvids="loaded"></iframe>*@
+                                                    <iframe width="1300" height="684" src="https://www.youtube.com/embed/@Model.ArticleMain.VideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                </div>
+                                            }
+
+                                            <div class="mkd-post-info">
+                                                <div class="mkd-post-info-comments-holder">
+                                                    <a class="mkd-post-info-comments" href="#comments" target="_self">Komentarze: @Html.Action("CountComments", "Home", new { AtricleId = Model.ArticleMain.ArticleId })</a>
+                                                </div>
+                                                <div class="mkd-post-info-count">
+                                                    <span class="mkd-post-count-text">Wyświetlenia: </span>
+                                                    <span class="mkd-post-count-number">@Model.ArticleMain.Views</span>
+                                                </div>
+                                                <div itemprop="dateCreated" class="mkd-post-info-date entry-date updated">
+                                                    <a itemprop="url" href="@Url.Action("IndexByDate", "Home", new { pageNumber = 1, Date = Model.ArticleMain.DateOfPublish.ToString("ddMMyyyy")})">@Convert.ToDateTime(Model.ArticleMain.DateOfPublish).ToString("dd/MM/yyyy HH:mm")</a>
+                                                    <meta itemprop="interactionCount" content="UserComments: @Html.Action("CountComments", "Home", new { AtricleId = Model.ArticleMain.ArticleId})">
+                                                </div>
+                                                <div class="mkd-post-info-author">
+                                                    <span>Autor: </span>
+                                                    <a itemprop="author" class="mkd-post-info-author-link" href="#">@Model.Users.Where(i => i.Id == Model.ArticleMain.AuthorId).First().Nickname</a>
+                                                </div>
+                                            </div>
+                                        </header>
+                                        <div class="mkd-post-text">
+                                            <div class="mkd-post-text-inner clearfix">
+                                                <header>
+                                                    <h1 itemprop="name" class="entry-title mkd-post-title">@Model.ArticleMain.Title</h1>
+                                                </header>
+                                                <div class="vc_row wpb_row vc_row-fluid mkd-section mkd-content-aligment-left" style="">
+                                                    <div class="clearfix mkd-full-section-inner">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <p style="white-space: pre-wrap; text-align: justify;">@Html.Raw(Server.HtmlDecode(Model.ArticleMain.Text))</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <section class="mkd-blog-single-share">
+                                        <span class="mkd-single-share-title">Udostępnij:</span>
+                                        <div class="mkd-social-share-holder mkd-list">
+                                            <ul>
+                                                <li class="mkd-facebook-share">
+                                                    <a class="mkd-share-link" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://simpleblog/@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticleMain.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticleMain.Title)})', 'sharer', 'toolbar=0,status=0,width=620,height=280');">
+                                                        <span class="mkd-social-network-icon social_facebook"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="mkd-twitter-share">
+                                                    <a class="mkd-share-link" onclick="window.open('https://twitter.com/intent/tweet?text=https://simpleblog/@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticleMain.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticleMain.Title)})', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false;">
+                                                        <span class="mkd-social-network-icon social_twitter"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </article>
+                                <section class="mkd-single-tags-holder">
+                                    <span class="mkd-single-tags-title">Tagi</span>
+                                    <div class="mkd-tags">
+                                        @foreach (var tag in Model.ArticleTags)
+                                        {
+                                            <a href="@Url.Action("IndexByTag", "Home", new { ArticlesTagId = tag.ArticlesTagId, tagName = UrlHelpers.GetTitleLink(tag.Name)})" rel="tag">@tag.Name</a>
+                                        }
+                                    </div>
+                                </section>
+                                <section class="mkd-blog-single-navigation">
+                                    <div class="mkd-blog-single-prev">
+                                        <a href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticlePrev.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticlePrev.Title) })" rel="prev">
+                                            <div class="mkd-prev-holder ">
+                                                <span class="mkd-nav-arrows ion-ios-arrow-left"></span>
+                                                <div class="mkd-prev-image" style="background-image:url(@Url.ArticleImagePath(Model.ArticlesPhotoPrevNext.ToList()[0].FilePath));"></div>
+                                                <div class="mkd-prev-title">
+                                                    <span class="mkd-prev-text">Poprzedni</span>
+                                                    <header>
+                                                        <h5>@Model.ArticlePrev.Title</h5>
+                                                    </header>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="mkd-blog-single-next">
+                                        <a href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticleNext.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticleNext.Title) })" rel="next">
+                                            <div class="mkd-next-holder ">
+                                                <div class="mkd-next-title">
+                                                    <span class="mkd-next-text">Następny</span>
+                                                    <header>
+                                                        <h5>@Model.ArticleNext.Title</h5>
+                                                    </header>
+                                                </div>
+                                                <div class="mkd-next-image" style="background-image:url(@Url.ArticleImagePath(Model.ArticlesPhotoPrevNext.ToList()[1].FilePath));"></div>
+                                                <span class="mkd-nav-arrows ion-ios-arrow-right"></span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </section>
+                                @if (Model.ArticleMain.AllowRates == true)
+                                {
+                                    @Html.Action("ArticleRateShow", "Home", new { ArticleId = Model.ArticleMain.ArticleId })
+                                }
+                                <section class="mkd-related-posts-holder">
+                                    <div class="mkd-related-posts-title">
+                                        <span class="mkd-section-title-holder clearfix ">
+                                            <span class="mkd-st-title">Powiązane artykuły</span>
+                                        </span>
+                                    </div>
+                                    <div class="mkd-related-posts-inner clearfix">
+                                        @foreach (var articleRelated in Model.ArticlesRelated)
+                                        {
+                                            <div class="mkd-related-post">
+                                                <div class="mkd-related-post-inner">
+                                                    <div class="mkd-related-top-content">
+                                                        <div class="mkd-related-image">
+                                                            <a itemprop="url" class="mkd-related-link mkd-image-link" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = articleRelated.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(articleRelated.Title) })" target="_self">
+                                                                <img width="800" height="444" src="@Url.ArticleImagePath(Model.ArticlesPhotoRelated.Where(i => i.ArticleId == articleRelated.ArticleId).First().FilePath)" class="attachment-discussion_landscape size-discussion_landscape wp-post-image" alt="a">
+                                                            </a>
+                                                        </div>
+                                                        <div class="mkd-related-content">
+                                                            <h4 class="mkd-related-title">
+                                                                <a itemprop="url" class="mkd-related-link" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = articleRelated.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(articleRelated.Title) })" target="_self">@articleRelated.Title</a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </section>
+
+                                @if (Model.ArticleMain.AllowComments == true)
+                                {
+                                    @Html.Action("ArticleCommentsShow", "Home", new { ArticleId = Model.ArticleMain.ArticleId })
+                                    @Html.Partial("_ArticleCommentAdd", new ArticlesComment() { ArticleId = Model.ArticleMain.ArticleId })
+                                }
+                            </main>
+                        </div>
+                    </div>
+                    <div class="mkd-column2">
+                        <div class="mkd-column-inner">
+                            @Html.Action("SocialAsideShow")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

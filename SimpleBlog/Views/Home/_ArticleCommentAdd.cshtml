@@ -1,0 +1,42 @@
+﻿@model SimpleBlog.Models.ArticlesComment
+<script src="https://www.google.com/recaptcha/api.js?render=6LeCwOAUAAAAADn4me7yJ3ilDiHvD_CDOvRb93UW"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LeCwOAUAAAAADn4me7yJ3ilDiHvD_CDOvRb93UW', { action: 'articleComment' }).then(function (token) {
+            $("#GoogleRecaptchaV3").val(token);
+        });
+    });
+</script>
+<div class="mkd-comment-form">
+    <div id="respond" class="comment-respond">
+        <h3 id="reply-title" class="comment-reply-title">
+            <span class="mkd-section-title-holder clearfix ">
+                <span class="mkd-st-title">Dodaj komentarz</span>
+            </span>
+            <small>
+                <a rel="nofollow" id="cancel-comment-reply-link" href="#" style="display:none;">Cancel Reply</a>
+            </small>
+        </h3>
+        @using (Ajax.BeginForm("ArticleCommentAdd", "Home", new AjaxOptions() { UpdateTargetId = "comments", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "ClearCommentForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.TextAreaFor(model => model.Text, htmlAttributes: new { @placeholder = "Wprowadź komentarz...", id = "commentTxt", @class = "textarea", @name = "comment", @cols = "45", @rows = "8" })
+            <div class="mkd-column clearfix">
+                <div class="mkd-column-inner" style="width:100%; padding:0;">
+                    <div class="mkd-column" style="width:100%">
+                        <div class="mkd-column-inner" style="padding:0">
+                            @Html.TextBoxFor(model => model.UserId, htmlAttributes: new { @placeholder = "Imię/pseudonim", id = "commentSignature", @class = "input", required = "required", })
+                            @Html.HiddenFor(model => model.ArticleId, htmlAttributes: new { @ArticleId = Model.ArticleId })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.GoogleRecaptchaV3)
+            <p class="form-submit">
+                <input name="submit" type="submit" id="submit_comment" class="submit" value="Dodaj komentarz">
+                <input type="hidden" name="comment_post_@Model.ArticlesCommentId" value="@Model.ArticlesCommentId" id="comment_post_@Model.ArticlesCommentId">
+                <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+            </p>
+        }
+    </div>
+</div>

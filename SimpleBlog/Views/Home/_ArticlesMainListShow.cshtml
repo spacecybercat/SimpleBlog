@@ -1,0 +1,156 @@
+﻿@model SimpleBlog.ViewModels.ArticlesMainListViewModel
+@using SimpleBlog.Infrastructure
+<section class="vc_row wpb_row vc_row-fluid mkd-section mkd-content-aligment-left" style="">
+    <div class="clearfix mkd-full-section-inner">
+        <div class="wpb_column vc_column_container vc_col-sm-12">
+            <div class="vc_column-inner">
+                <div class="wpb_wrapper">
+                    <div class="mkd-bnl-holder mkd-pl-two-holder  mkd-post-columns-1" data-base="mkd_post_layout_two" data-number_of_posts="3" data-column_number="1" data-category_id="4" data-title="No Pagination" data-pattern_style="light" data-custom_thumb_image_height="223" data-title_length="29" data-display_excerpt="yes" data-excerpt_length="25" data-display_pagination="no" data-paged="1" data-max_pages="7">
+                        <div class="mkd-bnl-outer">
+                            <div class="mkd-bnl-inner">
+                                @for (int i = 0; i < Model.ArticlesList.Count(); i++)
+                                {
+                                    <article class="mkd-pt-two-item mkd-post-item">
+                                        <div class="mkd-pt-two-item-inner">
+                                            <header class="mkd-pt-two-image-holder">
+                                                <div class="mkd-post-info-category">
+                                                    <a href="@Url.Action("IndexByCategory", "Home", new { pageNumber = 1, articlesCategoryId = Model.ArticlesList.ToList()[i].CategoryId, ArticlesCategory = Model.ArticlesCategoriesList.Where(n => n.ArticlesCategoryId == Model.ArticlesList.ToList()[i].CategoryId).First().Name })" rel="category tag">@Model.ArticlesCategoriesList.Where(n => n.ArticlesCategoryId == Model.ArticlesList.ToList()[i].CategoryId).First().Name</a>
+                                                </div>
+                                                <a itemprop="url" class="mkd-pt-two-link mkd-image-link" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticlesList.ToList()[i].ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticlesList.ToList()[i].Title) })" target="_self" style="width: 312px">
+                                                    <img src="@Url.ArticleImagePath(Model.ArticlesPhotosList.Where(a => a.ArticleId == Model.ArticlesList.ToList()[i].ArticleId).First().FilePath).ToString()" alt="a" style="height:100%;max-height:223px;" />
+                                                </a>
+                                            </header>
+                                            <div class="mkd-pt-two-content-holder">
+                                                <div class="mkd-pt-two-content-holder-inner">
+                                                    <header class="mkd-pt-two-content-top-holder">
+                                                        <div class="mkd-pt-two-content-top-holder-cell">
+                                                            <h3 class="mkd-pt-two-title">
+                                                                <a itemprop="url" class="mkd-pt-link" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticlesList.ToList()[i].ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticlesList.ToList()[i].Title) })" target="_self">
+                                                                    @if (Model.ArticlesList.ToList()[i].Title.Length > 29)
+                                                                    {
+                                                                        string title = Model.ArticlesList.ToList()[i].Title.Substring(0, 29) + "...";
+                                                                        @title
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Model.ArticlesList.ToList()[i].Title
+                                                                    }
+                                                                </a>
+                                                            </h3>
+                                                            <div itemprop="dateCreated" class="mkd-post-info-date entry-date updated">
+                                                                <a itemprop="url" href="@Url.Action("IndexByDate", "Home", new { pageNumber = 1, Date = Model.ArticlesList.ToList()[i].DateOfPublish.ToString("ddMMyyyy") })">@Convert.ToDateTime(Model.ArticlesList.ToList()[i].DateOfPublish).ToString("dd/MM/yyyy HH:mm")</a>
+                                                                <meta itemprop="interactionCount" content="UserComments: @Model.ArticlesCommentsCount[i]" />
+                                                            </div>
+                                                            <div class="mkd-pt-two-excerpt">
+                                                                <p class="mkd-post-excerpt" style="height:44px; overflow:hidden;">@Html.Raw(Server.HtmlDecode(Model.ArticlesList.ToList()[i].IntroText.ToString()))</p>
+                                                            </div>
+                                                        </div>
+                                                    </header>
+                                                    <div class="mkd-pt-two-content-bottom-holder">
+                                                        <div class="mkd-pt-info-section clearfix">
+
+                                                            <div>
+                                                                <div class="mkd-blog-share">
+                                                                    <div class="mkd-social-share-holder mkd-dropdown">
+                                                                        <a href="javascript:void(0)" target="_self" class="mkd-social-share-dropdown-opener" style="width:auto!important;">
+                                                                            <span class="mkd-social-share-title">Udostępnij</span>
+                                                                        </a>
+                                                                        <div class="mkd-social-share-dropdown">
+                                                                            <ul>
+                                                                                <li class="mkd-twitter-share">
+                                                                                    <a class="mkd-share-link" onclick="window.open('https://twitter.com/intent/tweet?text=https://simpleblog/@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticlesList.ToList()[i].ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticlesList.ToList()[i].Title) })', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false;">
+                                                                                        <span class="mkd-social-network-icon social_twitter"></span>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li class="mkd-facebook-share">
+                                                                                    <a class="mkd-share-link" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://simpleblog/@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticlesList.ToList()[i].ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticlesList.ToList()[i].Title) })', 'sharer', 'toolbar=0,status=0,width=620,height=280');">
+                                                                                        <span class="mkd-social-network-icon social_facebook"></span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mkd-post-info-comments-holder">
+                                                                    <a class="mkd-post-info-comments" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = Model.ArticlesList.ToList()[i].ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(Model.ArticlesList.ToList()[i].Title) })#comments" target="_self">Komentarze: @Model.ArticlesCommentsCount[i]</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.AllPages > 1)
+    {
+        <section class="clearfix mkd-full-section-inner">
+            <div class="wpb_column vc_column_container vc_col-sm-12">
+                <div class="vc_column-inner">
+                    <div class="wpb_wrapper">
+                        <div class="mkd-bnl-holder mkd-pl-two-holder  mkd-post-columns-1" data-base="mkd_post_layout_two" data-number_of_posts="3" data-column_number="1" data-category_id="4" data-pattern_style="light" data-custom_thumb_image_height="223" data-title_length="29" data-display_excerpt="yes" data-excerpt_length="25" style="justify-content:center !important">
+                            <span class="mkd-pagination-new-holder"></span>
+                            <div class="mkd-pagination">
+                                <ul>
+                                    <li class="mkd-pagination-first-page">
+                                        <a href="@Url.Action("Index", "Home", new { pageNumber = 1 })">
+                                            <span class="mkd-pagination-icon arrow_carrot-2left"></span>
+                                        </a>
+                                    </li>
+                                    <li class='mkd-pagination-prev'>
+                                        <a href="@Url.Action("Index", "Home", new { pageNumber = Model.Page - 1 })">
+                                            <span class='mkd-pagination-icon arrow_carrot-left'></span>
+                                        </a>
+                                    </li>
+                                    @{
+                                        int j = 0;
+                                    }
+                                    @for (int i = Model.Page - 4; i <= Model.Page + 9; i++)
+                                    {
+                                        if (i > 0 && i <= Model.AllPages)
+                                        {
+                                            if (i == Model.Page)
+                                            {
+                                                <li class='active'>
+                                                    <span>@i</span>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Home", new { pageNumber = i })" class='inactive'>@i</a>
+                                                </li>
+                                            }
+                                            j++;
+                                        }
+                                        if (j > 9)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    <li class="mkd-pagination-next">
+                                        <a href="@Url.Action("Index", "Home", new { pageNumber = Model.Page + 1 })">
+                                            <span class="mkd-pagination-icon arrow_carrot-right"></span>
+                                        </a>
+                                    </li>
+                                    <li class="mkd-pagination-last-page">
+                                        <a href="@Url.Action("Index", "Home", new { pageNumber = Model.AllPages })">
+                                            <span class="mkd-pagination-icon arrow_carrot-2right"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+</section>

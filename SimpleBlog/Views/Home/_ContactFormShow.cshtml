@@ -1,0 +1,49 @@
+﻿@model SimpleBlog.ViewModels.ContactFormViewModel
+<script src="https://www.google.com/recaptcha/api.js?render=6LeCwOAUAAAAADn4me7yJ3ilDiHvD_CDOvRb93UW"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LeCwOAUAAAAADn4me7yJ3ilDiHvD_CDOvRb93UW', { action: 'articleComment' }).then(function (token) {
+            $("#GoogleRecaptchaV3").val(token);
+        });
+    });
+</script>
+<div class="mkd-comment-form">
+    <div id="sendMessage" class="comment-respond">
+        @using (Html.BeginForm("ContactFormShow", "Home", FormMethod.Post, new { @class = "wpcf7-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="mkd-three-columns-all-33">
+                <div class="mkd-three-columns-all-33-inner">
+                    <div class="mkd-column">
+                        <div class="mkd-column-inner">
+                            <span class="wpcf7-form-control-wrap text-656">
+                                @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @placeholder = "Imię", id = "Name", @class = "wpcf7-form-control wpcf7-text", @name = "Name", required = "required", @size = "40"})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mkd-column">
+                        <div class="mkd-column-inner">
+                            <span class="wpcf7-form-control-wrap text-659">
+                                @Html.TextBoxFor(m => m.Phone, htmlAttributes: new { @placeholder = "Nr telefonu", id = "Phone", @class = "wpcf7-form-control wpcf7-text", @name = "Phone", required = "required", @size = "40"})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mkd-column">
+                        <div class="mkd-column-inner">
+                            <span class="wpcf7-form-control-wrap email-697">
+                                @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @placeholder = "Email", id = "Email", @class = "wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email", @name = "Email", required = "required", @size = "40" })
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.TextAreaFor(o => o.MessageText, htmlAttributes: new { @placeholder = "Treść wiadomości", id = "MessageTxt", @class = "wpcf7-form-control wpcf7-textarea", @name = "MessageTxt", @cols = "40", @rows = "10", required = "required" })
+            @Html.HiddenFor(model => model.GoogleRecaptchaV3)
+            <p class="form-submit">
+                <input name="submit" type="submit" id="submit_comment" class="submit" value="Wyślij">
+                <input type="hidden" name="comment_post_ID" value="205" id="comment_post_ID">
+                <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+            </p>
+        }
+    </div>
+</div>

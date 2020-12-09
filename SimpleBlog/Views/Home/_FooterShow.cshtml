@@ -1,0 +1,173 @@
+﻿@model SimpleBlog.ViewModels.FooterViewModel
+@using SimpleBlog.Infrastructure
+<footer>
+    <div class="mkd-footer-inner clearfix">
+        <section class="mkd-footer-top-holder">
+            <div class="mkd-footer-top ">
+                <div class="mkd-container">
+                    <div class="mkd-container-inner">
+                        <div class="mkd-three-columns clearfix">
+                            <section class="mkd-three-columns-inner">
+                                <section class="mkd-column">
+                                    <div class="mkd-column-inner">
+                                        <div class="widget mkd-image-widget">
+                                            <a href="#" target="_self">
+                                                <img src="~/Content/Images/LOGO-FOOTER.png" alt="a" />
+                                            </a>
+                                        </div>
+                                        <div id="text-7" class="widget mkd-footer-column-1 widget_text">
+                                            <div class="textwidget">
+                                                <div class="vc_empty_space" style="height: 15px">
+                                                    <span class="vc_empty_space_inner"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="widget mkd-image-widget" style="padding: 25px 0 15px">
+                                            <img src="~/Content/Images/footer-img.jpg" alt="a" />
+                                        </div>
+                                        <div id="text-8" class="widget mkd-footer-column-1 widget_text">
+                                            <div class="textwidget">
+                                                <div class="vc_empty_space" style="height: 15px">
+                                                    <span class="vc_empty_space_inner"></span>
+                                                </div>
+                                                <h5>
+                                                    <span style="color:#fff;">Kontakt:</span>
+                                                </h5>
+                                                <p>
+                                                    <b>Sprawy techniczne:</b> tech@simpleblog.pl<br />
+                                                    <b>Reklama:</b> biuro@simpleblog.pl<br />
+                                                    <b>Treści na stronie:</b> redakcja@simpleblog.pl
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="mkd-column">
+                                    <div class="mkd-column-inner">
+                                        <div class="widget mkd-plw-seven">
+                                            <h5 class="mkd-footer-widget-title">Nowe artykuły</h5>
+                                            <div class="mkd-bnl-holder mkd-pl-seven-holder  mkd-post-columns-1" data-base="mkd_post_layout_seven" data-number_of_posts="3" data-column_number="1" data-sort="latest" data-custom_thumb_image_width="90" data-custom_thumb_image_height="72" data-display_image="yes" data-title_tag="h6" data-title_length="13" data-display_date="yes" data-display_excerpt="no" data-paged="1" data-max_pages="48">
+                                                <div class="mkd-bnl-outer">
+                                                    <div class="mkd-bnl-inner">
+                                                        @foreach (var article in Model.RecentArticles)
+                                                        {
+                                                            <article class="mkd-pt-seven-item mkd-post-item">
+                                                                <div class="mkd-pt-seven-item-inner clearfix">
+                                                                    <div class="mkd-pt-seven-image-holder" style="width: 90px">
+                                                                        <a itemprop="url" class="mkd-pt-seven-link mkd-image-link" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = article.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(article.Title)})" target="_self">
+                                                                            <img src="@Url.ArticleImagePath(Model.RecentArticlesPhotos.Where(aid=> aid.ArticleId == article.ArticleId).First().FilePath).ToString()" alt="a" width="90" height="72" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="mkd-pt-seven-content-holder">
+                                                                        <div class="mkd-pt-seven-title-holder">
+                                                                            <h6 class="mkd-pt-seven-title">
+                                                                                <a itemprop="url" class="mkd-pt-link" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = article.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(article.Title)})" target="_self">@article.Title</a>
+                                                                            </h6>
+                                                                        </div>
+                                                                        <div itemprop="dateCreated" class="mkd-post-info-date entry-date updated">
+                                                                            <a itemprop="url" href="@Url.Action("IndexByDate", "Home", new { pageNumber = 1, Date = article.DateOfPublish.ToString("ddMMyyyy")})">@Convert.ToDateTime(article.DateOfPublish).ToString("dd/MM/yyyy HH:mm")</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </article>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="mkd-column">
+                                    <div class="mkd-column-inner">
+                                        <div class="widget mkd-rpc-holder">
+                                            <h5 class="mkd-footer-widget-title">Najnowsze komentarze</h5>
+                                            <div class="mkd-rpc-inner">
+                                                <ul>
+                                                    @foreach (var commentedArticle in Model.CommentedArticles)
+                                                    {
+                                                        <li>
+                                                            <div class="mkd-rpc-number-holder">
+                                                                <span class="ion-android-chat"></span>
+                                                            </div>
+                                                            <div class="mkd-rpc-content">
+                                                                <h6 class="mkd-rpc-link">
+                                                                    <a itemprop="url" href="@Url.Action("ArticleSinglePageShow", "Home", new { ArticleId = commentedArticle.ArticleId, ArticleTitle = UrlHelpers.GetTitleLink(commentedArticle.Title)})#comments">@commentedArticle.Title</a>
+                                                                </h6>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </section>
+                                <section class="mkd-column">
+                                    <div class="mkd-column-inner">
+                                    </div>
+                                </section>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mkd-footer-bottom-holder">
+            <div class="mkd-footer-bottom-holder-inner ">
+                <div class="mkd-container">
+                    <div class="mkd-container-inner">
+                        <div class="mkd-three-columns clearfix">
+                            <div class="mkd-three-columns-inner">
+                                <section class="mkd-column">
+                                    <div class="mkd-column-inner">
+                                        <div id="text-4" class="widget mkd-footer-bottom-left widget_text">
+                                            <div class="textwidget">
+                                                <div style="font-size: 0">
+                                                    <section class="mkd-icon-shortcode landscape" style="margin: 0;font-size:14px;height: 42px;line-height: 42px;width: 57px;background-color: fb4c35;border-style: solid;border-width: 0px" data-hover-background-color="#3B5998" data-hover-color="#ffffff" data-color="#ffffff">
+                                                        <a href="https://www.facebook.com/#" target="_blank" rel="noopener noreferrer">
+                                                            <span aria-hidden="true" class="mkd-icon-font-elegant social_facebook mkd-icon-element" style="color: #ffffff;font-size:14px"></span>
+                                                        </a>
+                                                    </section>
+                                                    <span class='mkd-vertical-separator' style="border-right-color: #fb7968;height: 42px;margin-left: 0px;margin-right: 0px"></span>
+                                                    <section class="mkd-icon-shortcode landscape" style="margin: 0;font-size:14px;height: 42px;line-height: 42px;width: 57px;background-color: fb4c35;border-style: solid;border-width: 0px" data-hover-background-color="#32506D" data-hover-color="#ffffff" data-color="#ffffff">
+                                                        <a href="https://twitter.com/#" target="_blank" rel="noopener noreferrer">
+                                                            <span aria-hidden="true" class="mkd-icon-font-elegant social_tumblr mkd-icon-element" style="color: #ffffff;font-size:14px"></span>
+                                                        </a>
+                                                    </section>
+                                                    <span class='mkd-vertical-separator' style="border-right-color: #fb7968;height: 42px;margin-left: 0px;margin-right: 0px"></span>
+                                                    <section class="mkd-icon-shortcode landscape" style="margin: 0px;font-size:14px;height: 42px;line-height: 42px;width: 57px;background-color: #fb4c35;border-style: solid;border-width: 0px" data-hover-background-color="#517FA6" data-hover-color="#ffffff" data-color="#ffffff">
+                                                        <a href="https://www.instagram.com/#" target="_blank" rel="noopener noreferrer">
+                                                            <span aria-hidden="true" class="mkd-icon-font-elegant social_instagram mkd-icon-element" style="color: #ffffff;font-size:14px"></span>
+                                                        </a>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="mkd-column">
+                                    <div class="mkd-column-inner">
+                                        <div id="text-3" class="widget mkd-footer-text widget_text">
+                                            <div class="textwidget"><a style="color: #121212" href="#" rel="nofollow noopener noreferrer" target="_blank"><p>simpleblog 2020<p></a></div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="mkd-column">
+                                    <div class="mkd-column-inner">
+                                        <div id="nav_menu-3" class="widget mkd-footer-bottom-left widget_nav_menu">
+                                            <div class="menu-header-top-menu-container">
+                                                <ul id="menu-header-top-menu-1" class="menu">
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1517"><a href="@Url.Action("Login", "Account")">Zaplecze</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>

@@ -1,0 +1,34 @@
+﻿@model SimpleBlog.ViewModels.ArticleDeleteViewModel
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        if (Model.Success == true)
+        {
+        <p>Udało się usunąć artykuł z bazy danych.</p>
+        <p>Razem z nim usunięto powiązane wpisy w bazie:</p>
+            if (Model.Comments > 0)
+            {
+                <p>Komentarze do artykułu: @Model.Comments</p>
+            }
+            if (Model.CommentsRates > 0)
+            {
+                <p>Oceny komentarzy do artykułu: @Model.CommentsRates</p>
+            }
+            if (Model.Photos > 0)
+            {
+                <p>Zdjęcia do artykułu: @Model.Photos</p>
+            }
+            if (Model.Rates > 0)
+            {
+                <p>Oceny artykułu: @Model.Rates</p>
+            }
+            if (Model.TagConnections > 0)
+            {
+                <p>Tagi do artykułu: @Model.TagConnections</p>
+            }
+            @Html.ActionLink("Powrót", "ArticlesManage")
+        }
+    }
+}

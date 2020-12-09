@@ -1,0 +1,55 @@
+﻿@model SimpleBlog.ViewModels.SocialAsideShowViewModel
+@using SimpleBlog.Infrastructure
+<aside class="mkd-sidebar">
+    <div class="widget widget_apsc_widget">
+        <header class="mkd-section-title-holder clearfix">
+            <span class="mkd-st-title">Polub nas!</span>
+        </header>
+        <section class="apsc-icons-wrapper clearfix apsc-theme-2">
+            <div class="apsc-each-profile">
+                <a class="apsc-facebook-icon clearfix" href="https://facebook.com" target="_blank">
+                    <div class="apsc-inner-block">
+                        <span class="social-icon">
+                            <i class="fa fa-facebook apsc-facebook"></i>
+                            <span class="media-name">Facebook</span>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="apsc-each-profile">
+                <a class="apsc-twitter-icon clearfix" href="https://twitter.com" target="_blank">
+                    <div class="apsc-inner-block">
+                        <span class="social-icon">
+                            <i class="fa fa-twitter apsc-twitter"></i>
+                            <span class="media-name">Twitter</span>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="apsc-each-profile">
+                <a class="apsc-instagram-icon clearfix" href="https://www.instagram.com" target="_blank">
+                    <div class="apsc-inner-block">
+                        <span class="social-icon">
+                            <i class="apsc-instagram fa fa-instagram"></i>
+                            <span class="media-name">Instagram</span>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+    <div class="widget widget_categories">
+        <div class="mkd-section-title-holder clearfix">
+            <span class="mkd-st-title">Popularne tagi</span>
+        </div>
+        <ul>
+            @foreach (var tag in Model.TagCounter)
+            {
+                <li class="cat-item cat-item-2">
+                    <a href="@Url.Action("IndexByTag", "Home", new { ArticlesTagId = tag.ArticleId, tagName = UrlHelpers.GetTitleLink(Model.PopularTagsList.Where(tid => tid.ArticlesTagId == tag.ArticleId).First().Name)})">@Model.PopularTagsList.Where(tid => tid.ArticlesTagId == tag.ArticleId).First().Name</a> (@tag.Counter)
+                </li>
+            }
+        </ul>
+    </div>
+
+</aside>

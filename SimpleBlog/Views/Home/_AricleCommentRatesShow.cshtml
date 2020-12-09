@@ -1,0 +1,34 @@
+﻿@model SimpleBlog.ViewModels.ArticleCommentRateViewModel
+
+@if (Model.ArticleCommentRateValue == 0)
+{
+    <div aria-hidden="true" class="icon_like" style="display:inline-block">
+        @Ajax.ActionLink(" ", "AricleCommentRatesShow", "Home", new { ArticleCommentId = Model.ArticleCommentId, ArticleCommentRateValue = 1 }, new AjaxOptions() { UpdateTargetId = "comment-rates-" + Model.ArticleCommentId, HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+    </div>
+    <div style="display:inline-block; margin:0px 5px;">@Model.ArticleCommentLikesCount</div><div style="display:inline-block"> | </div><div style="display:inline-block;margin:0px 5px;">@Model.ArticleCommentDislikesCount</div>
+    <div aria-hidden="true" class="icon_dislike" style="display:inline-block">
+        @Ajax.ActionLink(" ", "AricleCommentRatesShow", "Home", new { ArticleCommentId = Model.ArticleCommentId, ArticleCommentRateValue = -1 }, new AjaxOptions() { UpdateTargetId = "comment-rates-" + Model.ArticleCommentId, HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+    </div>
+}
+else
+{
+    if (Model.ArticleCommentRateValue == 1)
+    {
+        <div aria-hidden="true" class="icon_like_alt" style="display:inline-block; color:#fb4c35;">
+        </div>
+        <div style="display:inline-block; margin:0px 5px;">@Model.ArticleCommentLikesCount</div><div style="display:inline-block"> | </div><div style="display:inline-block;margin:0px 5px;">@Model.ArticleCommentDislikesCount</div>
+        <div aria-hidden="true" class="icon_dislike" style="display:inline-block">
+            @Ajax.ActionLink(" ", "AricleCommentRatesShow", "Home", new { ArticleCommentId = Model.ArticleCommentId, ArticleCommentRateValue = -1 }, new AjaxOptions() { UpdateTargetId = "comment-rates-" + Model.ArticleCommentId, HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+        </div>
+    }
+    if (Model.ArticleCommentRateValue == -1)
+    {
+        <div aria-hidden="true" class="icon_like" style="display:inline-block">
+            @Ajax.ActionLink(" ", "AricleCommentRatesShow", "Home", new { ArticleCommentId = Model.ArticleCommentId, ArticleCommentRateValue = 1 }, new AjaxOptions() { UpdateTargetId = "comment-rates-" + Model.ArticleCommentId, HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+        </div>
+        <div style="display:inline-block; margin:0px 5px;">@Model.ArticleCommentLikesCount</div><div style="display:inline-block"> | </div><div style="display:inline-block;margin:0px 5px;">@Model.ArticleCommentDislikesCount</div>
+        <div aria-hidden="true" class="icon_dislike_alt" style="display:inline-block; color:#fb4c35;">
+        </div>
+    }
+}
+

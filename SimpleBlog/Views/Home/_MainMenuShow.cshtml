@@ -1,0 +1,667 @@
+﻿@model SimpleBlog.ViewModels.MenuViewModel
+@using SimpleBlog.Models
+@using SimpleBlog.Infrastructure
+<header class="mkd-page-header">
+    <div class="mkd-logo-area">
+        <div class="mkd-grid">
+            <div class="mkd-vertical-align-containers">
+                <div class="mkd-position-left">
+                    <div class="mkd-position-left-inner">
+                        <div class="mkd-logo-wrapper">
+                            <a href="#" style="height: 55px;">
+                                <img class="mkd-normal-logo" src="~/Content/Images/logo.png" alt="logo" />
+                                <img class="mkd-dark-logo" src="~/Content/Images/logo.png" alt="dark logo" />
+                                <img class="mkd-light-logo" src="~/Content/Images/logo.png" alt="light logo" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mkd-menu-area">
+        <div class="mkd-grid">
+            <div class="mkd-vertical-align-containers">
+                <div class="mkd-position-left">
+                    <div class="mkd-position-left-inner">
+                        <div id="mkd_side_area_opener-2" class="widget widget_mkd_side_area_opener mkd-left-from-main-menu">
+                            <a class="mkd-side-menu-button-opener normal" href="javascript:void(0)">
+                                <i class="mkd-icon-ion-icon ion-android-menu "></i>
+                            </a>
+                        </div>
+                        <nav class="mkd-main-menu mkd-drop-down mkd-default-nav">
+                            <ul id="menu-main-menu" class="clearfix">
+                                @if (Model.ActiveSubmenu == 1)
+                                {
+                                    <li id="nav-menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor mkd-active-item">
+                                        <a href="#" class="">
+                                            <span class="item_outer">
+                                                <span class="item_inner">
+                                                    <span class="menu_icon_wrapper">
+                                                        <i class="menu_icon blank fa"></i>
+                                                    </span>
+                                                    <span class="item_text">Start</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li id="nav-menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom">
+                                        <a href="#" class="">
+                                            <span class="item_outer">
+                                                <span class="item_inner">
+                                                    <span class="menu_icon_wrapper">
+                                                        <i class="menu_icon blank fa"></i>
+                                                    </span>
+                                                    <span class="item_text">Start</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Model.ActiveSubmenu == 2)
+                                {
+                                    <li id="nav-menu-item-2" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mkd-active-item mkd-menu-has-sub mkd-menu-narrow">
+                                        <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                            <span class="item_outer">
+                                                <span class="item_inner">
+                                                    <span class="menu_icon_wrapper">
+                                                        <i class="menu_icon blank fa"></i>
+                                                    </span>
+                                                    <span class="item_text">Kategorie</span>
+                                                    <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="mkd-menu-second">
+                                            <div class="mkd-menu-inner">
+                                                <ul>
+                                                    @foreach (var category in Model.ArticlesCategories)
+                                                    {
+                                                        <li id="nav-menu-item-2-@category.ArticlesCategoryId" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("IndexByCategory", "Home", new { ArticlesCategory = UrlHelpers.GetTitleLink(category.Name), pageNumber = 1, articlesCategoryId = category.ArticlesCategoryId })" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">@category.Name</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    <li id="nav-menu-item-2" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mkd-menu-has-sub mkd-menu-narrow">
+                                        <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                            <span class="item_outer">
+                                                <span class="item_inner">
+                                                    <span class="menu_icon_wrapper">
+                                                        <i class="menu_icon blank fa"></i>
+                                                    </span>
+                                                    <span class="item_text">Kategorie</span>
+                                                    <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="mkd-menu-second">
+                                            <div class="mkd-menu-inner">
+                                                <ul>
+                                                      @foreach (var category in Model.ArticlesCategories)
+                                                      {
+                                                        <li id="nav-menu-item-2-@category.ArticlesCategoryId" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("IndexByCategory", "Home", new { ArticlesCategory = UrlHelpers.GetTitleLink(category.Name), pageNumber = 1, articlesCategoryId = category.ArticlesCategoryId })" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">@category.Name</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                       }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                }
+                                @if (Model.ActiveSubmenu == 5)
+                                {
+                                    <li id="nav-menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mkd-active-item mkd-menu-has-sub mkd-menu-narrow">
+                                        <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                            <span class="item_outer">
+                                                <span class="item_inner">
+                                                    <span class="menu_icon_wrapper">
+                                                        <i class="menu_icon blank fa"></i>
+                                                    </span>
+                                                    <span class="item_text">Kontakt</span>
+                                                    <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="mkd-menu-second">
+                                            <div class="mkd-menu-inner">
+                                                <ul>
+                                                    <li id="nav-menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("CookiesPolicyShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Polityka cookies</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="nav-menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("PrivacyPolicyShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Polityka prywatności</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="nav-menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("TermsOfUseShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Regulamin</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="nav-menu-item-54" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("ContactShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Napisz do nas</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li id="nav-menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mkd-menu-has-sub mkd-menu-narrow">
+                                        <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                            <span class="item_outer">
+                                                <span class="item_inner">
+                                                    <span class="menu_icon_wrapper">
+                                                        <i class="menu_icon blank fa"></i>
+                                                    </span>
+                                                    <span class="item_text">Kontakt</span>
+                                                    <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="mkd-menu-second">
+                                            <div class="mkd-menu-inner">
+                                                <ul>
+                                                    <li id="nav-menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("CookiesPolicyShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Polityka cookies</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="nav-menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("PrivacyPolicyShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Polityka prywatności</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="nav-menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("TermsOfUseShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Regulamin</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="nav-menu-item-54" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                        <a href="@Url.Action("ContactShow", "Home")" class="">
+                                                            <span class="item_outer">
+                                                                <span class="item_inner">
+                                                                    <span class="menu_icon_wrapper">
+                                                                        <i class="menu_icon blank fa"></i>
+                                                                    </span>
+                                                                    <span class="item_text">Napisz do nas</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="mkd-position-right">
+                    <div class="mkd-position-right-inner">
+                        <div id="mkd_search_opener-2" class="widget widget_mkd_search_opener mkd-right-from-main-menu">
+                            <a class="mkd-search-opener" href="javascript:void(0)">
+                                <i class="mkd-icon-ion-icon ion-ios-search "></i>
+                            </a>
+                            <div class="mkd-search-widget-holder">
+                                @Html.Action("SearchBarShow", "Home")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mkd-sticky-header">
+        <div class="mkd-sticky-holder">
+            <div class="mkd-grid">
+                <div class=" mkd-vertical-align-containers">
+                    <div class="mkd-position-left">
+                        <div class="mkd-position-left-inner">
+                            <div class="mkd-logo-wrapper">
+                                <a href="#" style="height: 23px;">
+                                    <img src="~/Content/Images/LOGO-STICKY.png" alt="logo" />
+                                </a>
+                            </div>
+                            <nav class="mkd-main-menu mkd-drop-down mkd-sticky-nav">
+                                <ul id="menu-main-menu-1" class="clearfix">
+                                    @if (Model.ActiveSubmenu == 1)
+                                    {
+                                        <li id="sticky-nav-menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor mkd-active-item">
+                                            <a href="#" class="">
+                                                <span class="item_outer">
+                                                    <span class="item_inner">
+                                                        <span class="menu_icon_wrapper">
+                                                            <i class="menu_icon blank fa"></i>
+                                                        </span>
+                                                        <span class="item_text">Start</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li id="sticky-nav-menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom">
+                                            <a href="#" class="">
+                                                <span class="item_outer">
+                                                    <span class="item_inner">
+                                                        <span class="menu_icon_wrapper">
+                                                            <i class="menu_icon blank fa"></i>
+                                                        </span>
+                                                        <span class="item_text">Start</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (Model.ActiveSubmenu == 2)
+                                    {
+                                        <li id="sticky-nav-menu-item-2" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children mkd-active-item mkd-menu-has-sub mkd-menu-narrow">
+                                            <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                                <span class="item_outer">
+                                                    <span class="item_inner">
+                                                        <span class="menu_icon_wrapper">
+                                                            <i class="menu_icon blank fa"></i>
+                                                        </span>
+                                                        <span class="item_text">Kategorie</span>
+                                                        <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                            <div class="mkd-menu-second">
+                                                <div class="mkd-menu-inner">
+                                                    <ul>
+                                                        @foreach (var category in Model.ArticlesCategories)
+                                                        {
+                                                            <li id="sticky-nav-menu-item-2-@category.ArticlesCategoryId" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                                <a href="@Url.Action("IndexByCategory", "Home", new { pageNumber = 1, articlesCategoryId = category.ArticlesCategoryId, ArticlesCategory = UrlHelpers.GetTitleLink(category.Name) })" class="">
+                                                                    <span class="item_outer">
+                                                                        <span class="item_inner">
+                                                                            <span class="menu_icon_wrapper">
+                                                                                <i class="menu_icon blank fa"></i>
+                                                                            </span>
+                                                                            <span class="item_text">@category.Name</span>
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li id="sticky-nav-menu-item-2" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  mkd-menu-has-sub mkd-menu-narrow">
+                                            <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                                <span class="item_outer">
+                                                    <span class="item_inner">
+                                                        <span class="menu_icon_wrapper">
+                                                            <i class="menu_icon blank fa"></i>
+                                                        </span>
+                                                        <span class="item_text">Kategorie</span>
+                                                        <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                            <div class="mkd-menu-second">
+                                                <div class="mkd-menu-inner">
+                                                    <ul>
+                                                        @foreach (var category in Model.ArticlesCategories)
+                                                        {
+                                                            <li id="sticky-nav-menu-item-2-@category.ArticlesCategoryId" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                                <a href="@Url.Action("IndexByCategory", "Home", new { pageNumber = 1, articlesCategoryId = category.ArticlesCategoryId, ArticlesCategory = UrlHelpers.GetTitleLink(category.Name) })" class="">
+                                                                    <span class="item_outer">
+                                                                        <span class="item_inner">
+                                                                            <span class="menu_icon_wrapper">
+                                                                                <i class="menu_icon blank fa"></i>
+                                                                            </span>
+                                                                            <span class="item_text">@category.Name</span>
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                    @if (Model.ActiveSubmenu == 5)
+                                    {
+                                        <li id="sticky-nav-menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children mkd-active-item mkd-menu-has-sub mkd-menu-narrow">
+                                            <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                                <span class="item_outer">
+                                                    <span class="item_inner">
+                                                        <span class="menu_icon_wrapper">
+                                                            <i class="menu_icon blank fa"></i>
+                                                        </span>
+                                                        <span class="item_text">Kontakt</span>
+                                                        <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                            <div class="mkd-menu-second">
+                                                <div class="mkd-menu-inner">
+                                                    <ul>
+                                                        <li id="sticky-nav-menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("CookiesPolicyShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Polityka cookies</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li id="sticky-nav-menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("PrivacyPolicyShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Polityka prywatności</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li id="sticky-nav-menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("TermsOfUseShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Regulamin</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li id="sticky-nav-menu-item-54" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("ContactShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Napisz do nas</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li id="sticky-nav-menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children mkd-menu-has-sub mkd-menu-narrow">
+                                            <a href="#" class=" current  no_link" style="cursor: default;" onclick="JavaScript: return false;">
+                                                <span class="item_outer">
+                                                    <span class="item_inner">
+                                                        <span class="menu_icon_wrapper">
+                                                            <i class="menu_icon blank fa"></i>
+                                                        </span>
+                                                        <span class="item_text">Kontakt</span>
+                                                        <span class="mkd_menu_arrow ion-ios-arrow-down"></span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                            <div class="mkd-menu-second">
+                                                <div class="mkd-menu-inner">
+                                                    <ul>
+                                                        <li id="sticky-nav-menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("CookiesPolicyShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Polityka cookies</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li id="sticky-nav-menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("PrivacyPolicyShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Polityka prywatności</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li id="sticky-nav-menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("TermsOfUseShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Regulamin</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li id="sticky-nav-menu-item-54" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                                            <a href="@Url.Action("ContactShow", "Home")" class="">
+                                                                <span class="item_outer">
+                                                                    <span class="item_inner">
+                                                                        <span class="menu_icon_wrapper">
+                                                                            <i class="menu_icon blank fa"></i>
+                                                                        </span>
+                                                                        <span class="item_text">Napisz do nas</span>
+                                                                    </span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="mkd-position-right">
+                        <div class="mkd-position-right-inner">
+                            <div id="mkd_search_opener-3" class="widget widget_mkd_search_opener mkd-sticky-right">
+                                <a class="mkd-search-opener" href="javascript:void(0)">
+                                    <i class="mkd-icon-ion-icon ion-ios-search "></i>
+                                </a>
+                                <div class="mkd-search-widget-holder">
+                                    @Html.Action("SearchBarShow", "Home")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<header class="mkd-mobile-header">
+    <div class="mkd-mobile-header-inner">
+        <div class="mkd-mobile-header-holder">
+            <div class="mkd-grid">
+                <div class="mkd-vertical-align-containers">
+                    <div class="mkd-position-left">
+                        <div class="mkd-position-left-inner">
+                            <div class="mkd-mobile-logo-wrapper">
+                                <a href="#" style="height: 55px">
+                                    <img src="~/Content/Images/LOGO-MOBILE.png" alt="mobile-logo" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mkd-position-right">
+                        <div class="mkd-position-right-inner">
+                            <div class="mkd-mobile-menu-opener">
+                                <a href="javascript:void(0)">
+                                    <span class="mkd-mobile-opener-icon-holder">
+                                        <span class="mkd-line line1"></span>
+                                        <span class="mkd-line line2"></span>
+                                        <span class="mkd-line line3"></span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="mkd-mobile-nav">
+            <div class="mkd-grid">
+                <ul id="menu-mobile-menu" class="">
+                    <li id="mobile-menu-item-1" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home ">
+                        <a href="#" class="">
+                            <span>Start</span>
+                        </a>
+                    </li>
+                    <li id="mobile-menu-item-2" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub">
+                        <a href="#" class="">
+                            <span>Kategorie</span>
+                        </a>
+                        <span class="mobile_arrow">
+                            <i class="mkd-sub-arrow ion-ios-arrow-right"></i>
+                        </span>
+                        <ul class="sub_menu">
+                            @foreach (var category in Model.ArticlesCategories)
+                            {
+                                <li id="mobile-menu-item-2-@category.ArticlesCategoryId" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home ">
+                                    <a href="@Url.Action("IndexByCategory", "Home", new { pageNumber = 1, articlesCategoryId = category.ArticlesCategoryId, ArticlesCategory = UrlHelpers.GetTitleLink(category.Name)})" class="">
+                                        <span>@category.Name</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li id="mobile-menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub">
+                        <a href="#" class="">
+                            <span>Kontakt</span>
+                        </a>
+                        <span class="mobile_arrow">
+                            <i class="mkd-sub-arrow ion-ios-arrow-right"></i>
+                        </span>
+                        <ul class="sub_menu">
+                            <li id="mobile-menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home ">
+                                <a href="@Url.Action("CookiesPolicyShow", "Home")" class="">
+                                    <span>Polityka cookies</span>
+                                </a>
+                            </li>
+                            <li id="mobile-menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                <a href="@Url.Action("PrivacyPolicyShow", "Home")" class="">
+                                    <span>Polityka prywatności</span>
+                                </a>
+                            </li>
+                            <li id="mobile-menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                <a href="@Url.Action("TermsOfUseShow", "Home")" class="">
+                                    <span>Regulamin</span>
+                                </a>
+                            </li>
+                            <li id="mobile-menu-item-54" class="menu-item menu-item-type-post_type menu-item-object-page ">
+                                <a href="@Url.Action("ContactShow", "Home")" class="">
+                                    <span>Napisz do nas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>

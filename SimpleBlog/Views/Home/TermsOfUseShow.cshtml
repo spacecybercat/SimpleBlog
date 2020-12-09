@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "simpleblog - Regulamin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Action("MainMenuShow", "Home", new { activeSubmenu = 5 })
+@Html.Action("BackToTopShow", "Home")
+<div class="mkd-content">
+    <div class="mkd-content-inner">
+        @Html.Action("TrendingArticlesShow", "Home")
+        @Html.Action("BreadcrumbsShow")
+        <div class="mkd-container">
+            <div class="mkd-container-inner">
+                <div class="mkd-two-columns-75-25  mkd-content-has-sidebar clearfix" style="position: relative;">
+                    <div class="mkd-column1 mkd-content-left-from-sidebar">
+                        <div class="mkd-column-inner">
+                            <main class="mkd-blog-holder mkd-blog-single">
+                                <article id="post-205" class="post-205 post type-post status-publish format-standard has-post-thumbnail hentry category-fun tag-cilmate tag-preparation tag-research tag-summer">
+                                    <div class="mkd-post-content">
+                                        <div class="mkd-post-text">
+                                            <div class="mkd-post-text-inner clearfix">
+                                                <header>
+                                                    <h1 itemprop="name" class="entry-title mkd-post-title">Regulamin serwisu</h1>
+                                                </header>
+                                                <div class="vc_row wpb_row vc_row-fluid mkd-section mkd-content-aligment-left" style="">
+                                                    <div class="clearfix mkd-full-section-inner">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <p style="text-align: justify;">
+                                                                                Aliquam tellus sapien, scelerisque in sollicitudin sit amet, consectetur at ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra consequat lectus a efficitur. Ut pellentesque nulla turpis, eget blandit augue elementum id. Nam sodales accumsan odio eu accumsan. Vivamus non tempus dui. Fusce quis laoreet lorem, quis sagittis urna. Proin sem dolor, eleifend nec odio posuere, tincidunt commodo quam. Proin tempor, lacus sit amet pellentesque luctus, risus augue molestie nisi, vel venenatis neque dui nec mauris. Quisque ultrices massa et est mollis tincidunt. Nunc eu eros vel sapien interdum rhoncus. Fusce nec nisi sollicitudin, rhoncus purus id, luctus ex. Sed consequat tempus odio sit amet posuere. Phasellus non nisl fermentum, mattis neque nec, suscipit sem. Morbi tempor elit non aliquet interdum.
+
+                                                                                Etiam id condimentum turpis. Maecenas eleifend, tellus sit amet dignissim euismod, nisi enim viverra turpis, id elementum nunc nibh non arcu. Vestibulum nec blandit dui. Mauris ipsum ante, lacinia porta ante a, sagittis molestie odio. Fusce lacinia, metus at fermentum vestibulum, orci massa consequat orci, eget euismod velit est vel tortor. Duis magna est, tristique quis ultricies lacinia, venenatis vitae justo. Aenean a suscipit ex. Integer euismod at erat a elementum. Cras risus eros, porta sit amet ligula vitae, dapibus venenatis diam.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </main>
+                        </div>
+                    </div>
+                    <div class="mkd-column2">
+                        <div class="mkd-column-inner">
+                            @Html.Action("SocialAsideShow")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

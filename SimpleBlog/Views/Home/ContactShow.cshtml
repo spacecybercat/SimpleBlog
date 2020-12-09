@@ -1,0 +1,91 @@
+﻿@model SimpleBlog.ViewModels.ContactViewModel
+@using SimpleBlog.ViewModels
+@{
+    ViewBag.Title = "simpleblog - Kontakt";
+    Layout = "~/Views/Shared/_LayoutContact.cshtml";
+}
+
+@Html.Action("MainMenuShow", "Home", new { activeSubmenu = 5 })
+@Html.Action("BackToTopShow", "Home")
+
+<div class="mkd-content">
+    <div class="mkd-content-inner">
+        @Html.Action("TrendingArticlesShow", "Home")
+        @Html.Action("BreadcrumbsShow")
+        <div class="mkd-container">
+            <div class="mkd-container-inner clearfix">
+                <div class="mkd-two-columns-75-25  mkd-content-has-sidebar clearfix">
+                    <div class="mkd-column1 mkd-content-left-from-sidebar">
+                        <div class="mkd-column-inner">
+
+                            <div class="vc_row wpb_row vc_row-fluid mkd-section vc_custom_1457354324375 mkd-content-aligment-left" style="">
+                                <div class="clearfix mkd-full-section-inner">
+                                    <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill">
+                                        <div class="vc_column-inner vc_custom_1457446509978">
+                                            <div class="wpb_wrapper">
+                                                <div class="vc_row wpb_row vc_inner vc_row-fluid mkd-section mkd-content-aligment-left" style="">
+                                                    <div class="mkd-full-section-inner">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <h1>Kontakt</h1>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="vc_empty_space" style="height: 10px">
+                                                                        <span class="vc_empty_space_inner"></span>
+                                                                    </div>
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <p>
+                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar sit amet ex eget ultrices. Nullam laoreet ante dui, semper volutpat nisi commodo eu. Quisque sed gravida eros. Fusce nec neque egestas, tempor nisl vitae, mattis risus. In rhoncus iaculis diam, id tristique massa pharetra ac. In semper odio a magna faucibus, eu aliquam orci blandit. Aliquam ante justo, elementum id ultrices id, maximus sed nibh. Quisque sapien purus, dictum vel ultrices non, tristique in enim. Morbi ut risus vitae lectus viverra consectetur. Nam vitae magna id risus lacinia convallis. Donec suscipit elit diam, ac ultrices turpis porta quis. Pellentesque vel ultrices felis. Mauris mattis neque ac nisl tempor dignissim. Aenean non leo nec elit placerat vehicula. Morbi vel condimentum velit. Sed in turpis nisi.
+
+                                                                                Nullam in aliquam augue. Integer interdum urna in bibendum sagittis. Morbi facilisis tincidunt ante, quis porta nulla pulvinar et. Donec elementum sodales lorem, vel aliquam metus ultricies id. Sed ligula enim, tempus vel orci eu, finibus aliquam nulla. Nam dignissim, velit vel gravida mattis, lectus nibh cursus elit, sit amet porttitor tortor erat volutpat eros. Nam et nisi mi. Donec sed odio at metus scelerisque suscipit. Suspendisse potenti. Suspendisse rhoncus consequat tortor, sed auctor ante fringilla sed. Phasellus fermentum tristique dictum. Aenean ultricies, lacus nec rutrum malesuada, orci magna feugiat sem, non tristique ante nibh a sapien.
+                                                                            </p>
+                                                                            <br />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="vc_row wpb_row vc_row-fluid mkd-section vc_custom_1457353735985 mkd-content-aligment-left" style="">
+                                <div class="clearfix mkd-full-section-inner">
+                                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                                        <div class="vc_column-inner vc_custom_1457354344312">
+                                            <div class="wpb_wrapper">
+                                                <div role="form" class="wpcf7" id="wpcf7-f1771-p1758-o1" dir="ltr">
+                                                    @if (!string.IsNullOrEmpty(Model.ValidationMsn))
+                                                    {
+                                                        <div style="color:red; margin-bottom:10px;">@Model.ValidationMsn</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Action("ContactFormShow", "Home")
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mkd-column2">
+                        <div class="mkd-column-inner">
+                            @Html.Action("SocialAsideShow")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -43,7 +44,59 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.6.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -88,19 +141,216 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SimpleBlog.mdf" />
+    <Content Include="App_Data\SimpleBlog_log.ldf">
+      <DependentUpon>SimpleBlog.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Atricles\bec0ca90-6b00-414f-a08b-af3a288cc0ff.jpg" />
+    <Content Include="Content\Images\Atricles\ccd93f06-e1fb-412b-a140-e82efcbf10f4.jpg" />
+    <Content Include="Content\Images\footer-img.jpg" />
+    <Content Include="Content\Images\footerBG.jpg" />
+    <Content Include="Content\Images\Icons\icon180x180.png" />
+    <Content Include="Content\Images\Icons\icon192x192.png" />
+    <Content Include="Content\Images\Icons\icon270x270.png" />
+    <Content Include="Content\Images\Icons\icon32x32.png" />
+    <Content Include="Content\Images\LOGO-FOOTER.png" />
+    <Content Include="Content\Images\LOGO-MOBILE.png" />
+    <Content Include="Content\Images\LOGO-STICKY.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\title_pattern.png" />
+    <Content Include="Content\Images\title_pattern_dark.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\theme css\2d442.css" />
+    <Content Include="Content\theme css\5501b.css" />
+    <Content Include="Content\theme css\7815b.css" />
+    <Content Include="Content\theme css\827dc.css" />
+    <Content Include="Content\theme css\928b3.css" />
+    <Content Include="Content\theme css\928b3a.css" />
+    <Content Include="Content\theme css\c138f.css" />
+    <Content Include="Content\theme css\rbt-modules.css" />
+    <Content Include="Content\theme css\testy.css" />
+    <Content Include="fonts\theme\ElegantIcons.svg" />
+    <Content Include="fonts\theme\fontawesome-webfont.svg" />
+    <Content Include="fonts\theme\ionicons.svg" />
+    <Content Include="fonts\theme\social-counter\fontawesome-webfont.svg" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Bold.svg" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Regular.svg" />
+    <Content Include="fonts\theme\star.svg" />
+    <Content Include="fonts\theme\WooCommerce.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\theme\dashicons.eot" />
+    <Content Include="fonts\theme\ElegantIcons.eot" />
+    <Content Include="fonts\theme\ElegantIcons.ttf" />
+    <Content Include="fonts\theme\ElegantIcons.woff" />
+    <Content Include="fonts\theme\fontawesome-webfont.eot" />
+    <Content Include="fonts\theme\fontawesome-webfont.ttf" />
+    <Content Include="fonts\theme\fontawesome-webfont.woff" />
+    <Content Include="fonts\theme\fontawesome-webfont.woff2" />
+    <Content Include="fonts\theme\FontAwesome.otf" />
+    <Content Include="fonts\theme\ionicons.eot" />
+    <Content Include="fonts\theme\ionicons.ttf" />
+    <Content Include="fonts\theme\ionicons.woff" />
+    <Content Include="fonts\theme\social-counter\fontawesome-webfont.eot" />
+    <Content Include="fonts\theme\social-counter\fontawesome-webfont.ttf" />
+    <Content Include="fonts\theme\social-counter\fontawesome-webfont.woff" />
+    <Content Include="fonts\theme\social-counter\fontawesome-webfont.woff2" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Bold.eot" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Bold.otf" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Bold.ttf" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Bold.woff" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Regular.eot" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Regular.otf" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Regular.ttf" />
+    <Content Include="fonts\theme\social-counter\MyriadPro-Regular.woff" />
+    <Content Include="fonts\theme\star.eot" />
+    <Content Include="fonts\theme\star.ttf" />
+    <Content Include="fonts\theme\star.woff" />
+    <Content Include="fonts\theme\WooCommerce.eot" />
+    <Content Include="fonts\theme\WooCommerce.ttf" />
+    <Content Include="fonts\theme\WooCommerce.woff" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\theme\0895c.js" />
+    <Content Include="Scripts\theme\0fef6.js" />
+    <Content Include="Scripts\theme\3c2c7.js" />
+    <Content Include="Scripts\theme\3de27.js" />
+    <Content Include="Scripts\theme\450ff.js" />
+    <Content Include="Scripts\theme\6d18f.js" />
+    <Content Include="Scripts\theme\76e3b.js" />
+    <Content Include="Scripts\theme\864c2.js" />
+    <Content Include="Scripts\theme\ajax.js" />
+    <Content Include="Scripts\theme\ced9a.js" />
+    <Content Include="Scripts\theme\de46f.js" />
+    <Content Include="Scripts\theme\eff97.js" />
+    <Content Include="Scripts\theme\f1253.js" />
+    <Content Include="Scripts\theme\fec3b.js" />
+    <Content Include="Scripts\theme\jquery.lazy.min.js" />
+    <Content Include="Scripts\theme\rbt-modules.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Classes\TagCheck.cs" />
+    <Compile Include="Classes\TagRelationCounter.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackofficeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataAccessLayer\SimpleBlogContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AppConfig.cs" />
+    <Compile Include="Infrastructure\Const.cs" />
+    <Compile Include="Infrastructure\DefaultCacheProvider.cs" />
+    <Compile Include="Infrastructure\ICacheProvider.cs" />
+    <Compile Include="Infrastructure\UrlHelpers.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\ArticlesCategory.cs" />
+    <Compile Include="Models\ArticlesComment.cs" />
+    <Compile Include="Models\ArticlesCommentRate.cs" />
+    <Compile Include="Models\ArticlesPhoto.cs" />
+    <Compile Include="Models\ArticlesRate.cs" />
+    <Compile Include="Models\ArticlesTag.cs" />
+    <Compile Include="Models\ArticlesTagsConnection.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\ArticleAddViewModel.cs" />
+    <Compile Include="ViewModels\ArticleBigBlockShowViewModel.cs" />
+    <Compile Include="ViewModels\ArticleCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\ArticleCommentRateViewModel.cs" />
+    <Compile Include="ViewModels\ArticleCommentsViewModel.cs" />
+    <Compile Include="ViewModels\ArticleDateListViewModel.cs" />
+    <Compile Include="ViewModels\ArticleDeleteViewModel.cs" />
+    <Compile Include="ViewModels\ArticleRateViewModel.cs" />
+    <Compile Include="ViewModels\ArticlesCategoriesManageViewModel.cs" />
+    <Compile Include="ViewModels\ArticleSinglePageShowViewModel.cs" />
+    <Compile Include="ViewModels\ArticlesMainListViewModel.cs" />
+    <Compile Include="ViewModels\ArticlesManageViewModel.cs" />
+    <Compile Include="ViewModels\ArticleTagListViewModel.cs" />
+    <Compile Include="ViewModels\ContactFormViewModel.cs" />
+    <Compile Include="ViewModels\ContactViewModel.cs" />
+    <Compile Include="ViewModels\CountCommentsViewModel.cs" />
+    <Compile Include="ViewModels\FooterViewModel.cs" />
+    <Compile Include="ViewModels\IndexByCategoryViewModel.cs" />
+    <Compile Include="ViewModels\IndexByDateViewModel.cs" />
+    <Compile Include="ViewModels\IndexByTagViewModel.cs" />
+    <Compile Include="ViewModels\IndexViewModel.cs" />
+    <Compile Include="ViewModels\InstallationCompletedViewModel.cs" />
+    <Compile Include="ViewModels\InstallationViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\SearchBarViewModel.cs" />
+    <Compile Include="ViewModels\SearchResultIndexViewModel.cs" />
+    <Compile Include="ViewModels\SocialAsideShowViewModel.cs" />
+    <Compile Include="ViewModels\TagsManageShowViewModel.cs" />
+    <Compile Include="ViewModels\TrendingArticlesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Installation.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\InstallationCompleted.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LayoutAnnouncementAdd.cshtml" />
+    <Content Include="Views\Shared\_LayoutBackoffice.cshtml" />
+    <Content Include="Views\Shared\_LayoutBackofficeArticlesManage.cshtml" />
+    <Content Include="Views\Shared\_LayoutContact.cshtml" />
+    <Content Include="Views\Shared\_LayoutForumThread.cshtml" />
+    <Content Include="Views\Shared\_Layout_ArticleSingle.cshtml" />
+    <Content Include="Views\Shared\_ShowCookiesWarning.cshtml" />
+    <Content Include="Views\Home\ArticleSinglePageShow.cshtml" />
+    <Content Include="Views\Home\Backoffice.cshtml" />
+    <Content Include="Views\Home\ContactShow.cshtml" />
+    <Content Include="Views\Home\CookiesPolicyShow.cshtml" />
+    <Content Include="Views\Home\IndexAnnouncementsByCategory.cshtml" />
+    <Content Include="Views\Home\IndexByCategory.cshtml" />
+    <Content Include="Views\Home\IndexByDate.cshtml" />
+    <Content Include="Views\Home\IndexByTag.cshtml" />
+    <Content Include="Views\Home\PrivacyPolicyShow.cshtml" />
+    <Content Include="Views\Home\SerchResultIndex.cshtml" />
+    <Content Include="Views\Home\TermsOfUseShow.cshtml" />
+    <Content Include="Views\Home\_AricleCommentRatesShow.cshtml" />
+    <Content Include="Views\Home\_ArticleBigBlockShow.cshtml" />
+    <Content Include="Views\Home\_ArticleCommentAdd.cshtml" />
+    <Content Include="Views\Home\_ArticleCommentsShow.cshtml" />
+    <Content Include="Views\Home\_ArticleRateShow.cshtml" />
+    <Content Include="Views\Home\_ArticlesListByCategoryShow.cshtml" />
+    <Content Include="Views\Home\_ArticlesListByDateShow.cshtml" />
+    <Content Include="Views\Home\_ArticlesListByTagShow.cshtml" />
+    <Content Include="Views\Home\_ArticlesMainListShow.cshtml" />
+    <Content Include="Views\Home\_BackToTopShow.cshtml" />
+    <Content Include="Views\Home\_BreadcrumbsShow.cshtml" />
+    <Content Include="Views\Home\_ContactFormShow.cshtml" />
+    <Content Include="Views\Home\_FooterShow.cshtml" />
+    <Content Include="Views\Home\_MainMenuShow.cshtml" />
+    <Content Include="Views\Home\_SearchBarShow.cshtml" />
+    <Content Include="Views\Home\_SearchResultList.cshtml" />
+    <Content Include="Views\Home\_SideMenuShow.cshtml" />
+    <Content Include="Views\Home\_SocialAsideShow.cshtml" />
+    <Content Include="Views\Home\_TrendingArticlesShow.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Backoffice\ArticleAdd.cshtml" />
+    <Content Include="Views\Backoffice\ArticleDelete.cshtml" />
+    <Content Include="Views\Backoffice\ArticlesCategoriesManage.cshtml" />
+    <Content Include="Views\Backoffice\ArticlesManage.cshtml" />
+    <Content Include="Views\Backoffice\Index.cshtml" />
+    <Content Include="Views\Backoffice\TagsManageShow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -108,11 +358,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -143,7 +389,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

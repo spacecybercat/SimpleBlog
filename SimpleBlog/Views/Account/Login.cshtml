@@ -1,0 +1,38 @@
+﻿@model SimpleBlog.ViewModels.AccountViewModel.LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
+    ViewBag.Title = "Login";
+}
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @Html.Action("Index", "Backoffice")
+}
+else
+{
+    <div class="mkd-container">
+        <div class="mkd-container-inner clearfix">
+            <div class="woocommerce">
+                <h2>Logowanie do panelu administracyjnego</h2>
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+
+                    <p class="form-row form-row-wide">
+                        <label for="username">Login<span class="required">*</span></label>
+                        @Html.TextBoxFor(o => o.UserName, new { @class = "input-text", @placeholder = "login" })
+                    </p>
+                    <p class="form-row form-row-wide">
+                        <label for="password">Password <span class="required">*</span></label>
+                        @Html.PasswordFor(o => o.Password, new { @class = "input-text", @placeholder = "hasło...", @type = "password" })
+                    </p>
+                    <p>
+                        Zapamiętaj mnie:
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @checked = "checked" })
+                    </p>
+                    <input type="submit" value="Zaloguj" />
+                }
+            </div>
+        </div>
+    </div>
+}
