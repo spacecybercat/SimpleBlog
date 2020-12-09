@@ -3,7 +3,36 @@
     ViewBag.Title = "Dodaj / edytuj artukuł";
     Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
 }
-
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <aside class="mkd-side-menu right" style="left:0px;height:100%;">
+            <div class="mkd-close-side-menu-holder">
+                <div class="mkd-close-side-menu-holder-inner">
+                    <a href="#" target="_self" class="mkd-close-side-menu">
+                        <span aria-hidden="true" class="icon_close"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="widget mkd-image-widget" style="padding: 25px 0 0 0">
+                <a href="#" target="_self"><img src="~/Content/Images/LOGO-FOOTER.png" alt="a" /></a>
+            </div>
+            <div id="nav_menu-2" class="widget mkd-sidearea widget_nav_menu">
+                <div class="mkd-section-title-holder clearfix mkd-pattern-dark">
+                    <span class="mkd-st-title">Zarządzaj</span>
+                </div>
+                <div class="menu-sidearea-menu-2-container">
+                    <ul id="menu-sidearea-menu-2" class="menu">
+                        <li id="menu-item-2-1" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21">@Html.ActionLink("Artykuły", "ArticlesManage")</li>
+                        <li id="menu-item-2-2" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21">@Html.ActionLink("Kategorie artykułów", "ArticlesCategoriesManage")</li>
+                        <li id="menu-item-2-3" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21">@Html.ActionLink("Zarządzanie tagami", "TagsManageShow")</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    }
+}
 @if (Request.IsAuthenticated)
 {
     if (User.IsInRole("Admin"))
@@ -40,103 +69,103 @@
                                 </p>
                                 <p class="form-row form-row-wide">
                                     <label for="Text">Treść artykułu<span class="required">*</span></label>
-                                    
+
                                     @Html.TextAreaFor(o => o.Article.Text, new { @placeholder = "Treść artykułu...", @class = "wpcf7-form-control wpcf7-textarea", @cols = "40", @rows = "30" })
                                     @*@Html.TextAreaFor(o => o.Article.Text, new { @id = "Article_Text" })*@
 
 
                                 </p>
-                            <p class="form-row form-row-wide">
-                                <label for="Text">Zapowiedź artykułu<span class="required">*</span></label>
-                                @Html.TextAreaFor(o => o.Article.IntroText, new { @placeholder = "Treść zapowiedzi artykułu...", @class = "wpcf7-form-control wpcf7-textarea", @cols = "40", @rows = "10" })
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <label for="VideoLink">Link do filmu na youtube, po znaku "="</label>
-                                <br />
-                                @Html.TextBoxFor(o => o.Article.VideoLink, new { @class = "input-text", @placeholder = "Link" })
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <label for="Tags">Tagi</label>
-                                <br />
-                                @Html.TextBoxFor(o => o.Tags, new { @class = "input-text", @placeholder = "Tagi" })
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <lable for="TagsListChecked">Wybierz tagi<span class="required">*</span></lable>
-                                @if (Model.TagsList.Count > 0)
-                                {
-                                    <table>
-
-                                            @for (int r = 1; r <= (Model.TagsListChecked.Count / 5)+1; r++)
-                                            {
-                                                    <tr>
-                                                        @for (int t = 1; t <= 5; t++)
-                                                        {
-                                                            if (Model.TagsListChecked.Count() >= ((r * 5)- 5 + t))
-                                                            {
-                                                                <td style="text-align:left;border:1px solid black;padding:1px;margin:0; color:black;">
-                                                                    @Html.HiddenFor(o => o.TagsListChecked[((r * 5) - 5 + t) - 1].Tag.Name)
-                                                                    @Html.CheckBoxFor(o => o.TagsListChecked[((r * 5) - 5 + t) - 1].Value) @Model.TagsListChecked[((r * 5) - 5 + t) - 1].Tag.Name
-
-                                                                </td>
-                                                            }
-                                                        }
-                                                    </tr>
-                                            }
-                                    </table>
-                                }   
-                            </p>
-                            <p class="form-row form-row-wide">
-                                @if (Model.ArticlesCategories.Count() > 0)
-                                {
-                                    <lable for="ArticleCategory">Wybierz kategorię<span class="required">*</span></lable>
+                                <p class="form-row form-row-wide">
+                                    <label for="Text">Zapowiedź artykułu<span class="required">*</span></label>
+                                    @Html.TextAreaFor(o => o.Article.IntroText, new { @placeholder = "Treść zapowiedzi artykułu...", @class = "wpcf7-form-control wpcf7-textarea", @cols = "40", @rows = "10" })
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <label for="VideoLink">Link do filmu na youtube, po znaku "="</label>
                                     <br />
-                                    @Html.DropDownListFor(c => c.Article.CategoryId, new SelectList(Model.ArticlesCategories, "ArticlesCategoryId", "Name", Model.ArticlesCategories.First().ArticlesCategoryId))
-                                }
-                                else
-                                {
-                                    <lable for="ArticleCategory">Musisz stworzyć jakąś kategorię<span class="required">*</span></lable>
-                                }
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <label for="file">Załaduj zdjęcia 1300x722<span class="required">*</span></label>
-                                <br />
-                                <input multiple type="file" id="file" name="files" value="@Model.ArticlePhotos" />
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <label for="DateOfPublish">Data publikacji<span class="required">*</span></label>
-                                <br />
-                                @if (Model.Article.DateOfPublish != null)
-                                {
-                                    <input type="datetime-local" name="DateOfPublish" value="@Model.Article.DateOfPublish.ToString("yyyy-MM-ddTHH:mm")" class="form-control">
-                                }
-                                else
-                                {
-                                    <input type="datetime-local" name="DateOfPublish" value="@Model.Article.DateOfPublish" class="form-control">
-                                }
+                                    @Html.TextBoxFor(o => o.Article.VideoLink, new { @class = "input-text", @placeholder = "Link" })
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <label for="Tags">Tagi</label>
+                                    <br />
+                                    @Html.TextBoxFor(o => o.Tags, new { @class = "input-text", @placeholder = "Tagi" })
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <lable for="TagsListChecked">Wybierz tagi<span class="required">*</span></lable>
+                                    @if (Model.TagsList.Count > 0)
+                                    {
+                                        <table>
 
-                            </p>
-                            <p class="form-row">
-                                <label for="Visible" class="inline">
-                                    Widoczny
-                                    @Html.CheckBoxFor(o => o.Article.Visible)
-                                </label>
-                            </p>
-                            <p class="form-row">
-                                <label for="AllowComments" class="inline">
-                                    Zazwól na komentarze
-                                    @Html.CheckBoxFor(o => o.Article.AllowComments)
-                                </label>
-                            </p>
-                            <p class="form-row">
-                                <label for="AllowRates" class="inline">
-                                    Zazwól na oceny
-                                    @Html.CheckBoxFor(o => o.Article.AllowRates)
-                                </label>
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <input type="submit" class="button" method="post" value="Zapisz" />
-                            </p>
-                        }
+                                            @for (int r = 1; r <= (Model.TagsListChecked.Count / 5) + 1; r++)
+                                            {
+                                                <tr>
+                                                    @for (int t = 1; t <= 5; t++)
+                                                    {
+                                                        if (Model.TagsListChecked.Count() >= ((r * 5) - 5 + t))
+                                                        {
+                                                            <td style="text-align:left;border:1px solid black;padding:1px;margin:0; color:black;">
+                                                                @Html.HiddenFor(o => o.TagsListChecked[((r * 5) - 5 + t) - 1].Tag.Name)
+                                                                @Html.CheckBoxFor(o => o.TagsListChecked[((r * 5) - 5 + t) - 1].Value) @Model.TagsListChecked[((r * 5) - 5 + t) - 1].Tag.Name
+
+                                                            </td>
+                                                        }
+                                                    }
+                                                </tr>
+                                            }
+                                        </table>
+                                    }
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    @if (Model.ArticlesCategories.Count() > 0)
+                                    {
+                                        <lable for="ArticleCategory">Wybierz kategorię<span class="required">*</span></lable>
+                                        <br />
+                                        @Html.DropDownListFor(c => c.Article.CategoryId, new SelectList(Model.ArticlesCategories, "ArticlesCategoryId", "Name", Model.ArticlesCategories.First().ArticlesCategoryId))
+                                    }
+                                    else
+                                    {
+                                        <lable for="ArticleCategory">Musisz stworzyć jakąś kategorię<span class="required">*</span></lable>
+                                    }
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <label for="file">Załaduj zdjęcia 1300x722<span class="required">*</span></label>
+                                    <br />
+                                    <input multiple type="file" id="file" name="files" value="@Model.ArticlePhotos" />
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <label for="DateOfPublish">Data publikacji<span class="required">*</span></label>
+                                    <br />
+                                    @if (Model.Article.DateOfPublish != null)
+                                    {
+                                        <input type="datetime-local" name="DateOfPublish" value="@Model.Article.DateOfPublish.ToString("yyyy-MM-ddTHH:mm")" class="form-control">
+                                    }
+                                    else
+                                    {
+                                        <input type="datetime-local" name="DateOfPublish" value="@Model.Article.DateOfPublish" class="form-control">
+                                    }
+
+                                </p>
+                                <p class="form-row">
+                                    <label for="Visible" class="inline">
+                                        Widoczny
+                                        @Html.CheckBoxFor(o => o.Article.Visible)
+                                    </label>
+                                </p>
+                                <p class="form-row">
+                                    <label for="AllowComments" class="inline">
+                                        Zazwól na komentarze
+                                        @Html.CheckBoxFor(o => o.Article.AllowComments)
+                                    </label>
+                                </p>
+                                <p class="form-row">
+                                    <label for="AllowRates" class="inline">
+                                        Zazwól na oceny
+                                        @Html.CheckBoxFor(o => o.Article.AllowRates)
+                                    </label>
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <input type="submit" class="button" method="post" value="Zapisz" />
+                                </p>
+                            }
                         </div>
                     </div>
                 </div>
