@@ -54,19 +54,6 @@
                                                     </div>
                                                     <div class="mkd-rpc-inner">
                                                         <ul>
-                                                            <li>
-                                                                @using (Html.BeginForm("ArticlesCategoriesManage", "Backoffice", FormMethod.Post))
-                                                                {
-                                                                <div class="mkd-rpc-content" style="width:93%">
-                                                                    <h6 class="mkd-rpc-link">
-                                                                         @Html.TextBoxFor(o => o.ArticlesCategoryAddName, new { @class = "input-text", @placeholder = "Nazwa kategorii..." })
-                                                                    </h6>
-                                                                </div>
-                                                                <div style="display:inline-block">
-                                                                    <input type="submit" class="button" method="post" value="Dodaj kategorię" />
-                                                                </div>
-                                                                }
-                                                            </li>
                                                             @foreach (var category in Model.ArticleCategories)
                                                             {
                                                                 <li>
@@ -79,6 +66,24 @@
                                                                 </li>
                                                             }
                                                         </ul>
+                                                        <br />
+                                                            @using (Html.BeginForm("ArticlesCategoriesManage", "Backoffice", FormMethod.Post))
+                                                            {
+                                                                <ul>
+                                                                    <li>
+                                                                        <div class="mkd-rpc-content" style="width:93%">
+                                                                            <h6 class="mkd-rpc-link">
+                                                                                @Html.TextBoxFor(o => o.ArticlesCategoryAddName, new { @class = "input-text", @placeholder = "Nazwa kategorii..." })
+                                                                            </h6>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div style="display:inline-block">
+                                                                            <input type="submit" class="woocommerce woocommerce-page button " method="post" value="Dodaj kategorię" />
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                             }     
                                                     </div>
                                                 </div>
                                             </div>
