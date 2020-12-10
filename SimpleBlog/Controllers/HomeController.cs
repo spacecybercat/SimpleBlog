@@ -840,8 +840,6 @@ namespace SimpleBlog.Controllers
             VM.ArticleCommentDislikesCount = dataBase.ArticlesCommentsRates.Where(id => id.ArticlesCommentId == ArticleCommentId).Where(v => v.Value == -1).Count();
             return PartialView("_AricleCommentRatesShow", VM);
         }
-
-
         public class CaptchaResponseViewModel
         {
             public bool Success { get; set; }

@@ -1,8 +1,12 @@
 ﻿@model SimpleBlog.ViewModels.InstallationCompletedViewModel
 @{
-    ViewBag.Title = "InstallationCompleted";
+    ViewBag.Title = "simpleblog - instalacja";
+    Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
 }
-
-<h2>InstallationCompleted</h2>
-<h3>@Model.Message.ToString()</h3>
-
+<div style="width:80%; margin-left:auto;margin-right:auto">
+    <h3>@Model.Message.ToString()</h3>
+    <hr />
+    @Html.ActionLink("Strona startowa", "Index")
+    <br />
+    @Html.ActionLink("Zarządzanie", "Index", "Backoffice")
+</div>

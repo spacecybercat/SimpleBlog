@@ -1,69 +1,71 @@
 ﻿@using SimpleBlog.ViewModels
 @model SimpleBlog.ViewModels.InstallationViewModel
 @{
-    ViewBag.Title = "Installation";
+    ViewBag.Title = "simpleblog - instalacja";
+    Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
 }
+<div style="width:80%;margin-left:auto;margin-right:auto;">
+    <h1>Instalacja SimpleBlog</h1>
+    <h2>Wybór bazy danych</h2>
+    @if (Model.ResultMessage != null)
+    {
+        <h2 style="color:red;">@Model.ResultMessage</h2>
+    }
 
-<h1>Instalacja SimpleBlog</h1>
-<h2>Wybór bazy danych</h2>
-@if(Model.ResultMessage != null)
-{
-    <h2 style="color:red;">@Model.ResultMessage</h2>
-}
+    @using (Html.BeginForm("Installation", "Home", FormMethod.Post))
+    {
+        <div id="database_form">
 
-@using (Html.BeginForm("Installation", "Home", FormMethod.Post))
-{
-    <div id="database_form">
-        
-        @if (Model.DatabaseOption == 1)
-        {
-            <input type="radio" id="new_local" name="database" value="1" checked="checked" />
-            <label for="new_local">@Ajax.ActionLink("Nowa baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 1 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
-        }
-        else
-        {
-            <input type="radio" id="new_local" name="database" value="1" />
-            <label for="new_local">@Ajax.ActionLink("Nowa baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 1 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
-        }
-        @if (Model.DatabaseOption == 2)
-        {
-            <input type="radio" id="local" name="database" value="2" checked="checked" />
-            <label for="local">@Ajax.ActionLink("Istniejąca baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 2 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
-            @Html.TextAreaFor(o => o.DatabaseName, new { @id = "database_name", required = "required" })
-            <label for="database_name">Nazwa bazy danych</label><br />
-        }
-        else
-        {
-            <input type="radio" id="local" name="database" value="2" />
-            <label for="local">@Ajax.ActionLink("Istniejąca baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 2 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
-        }
-        @if (Model.DatabaseOption == 4)
-        {
-            <input type="radio" id="on_server" name="database" value="4" checked="checked" />
-            <label for="on_server">@Ajax.ActionLink("Istniejąca baza danych na serwerze", "IstallationChangeServerOption", "Home", new { DatabaseOption = 4 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
-            @Html.TextAreaFor(o => o.DatabaseServer, new { @id = "database_server", required = "required" })
-            <label for="database_name">Adres serwera bazy danych</label><br />
-            @Html.TextAreaFor(o => o.DatabaseName, new { @id = "database_name", required = "required" })
-            <label for="database_name">Nazwa bazy danych</label><br />
-            @Html.TextAreaFor(o => o.DatabaseAdminLogin, new { @id = "database_admin_login", required = "required" })
-            <label for="database_admin_login">Login admina serwera bazy danych</label><br />
-            @Html.PasswordFor(o => o.DatabaseAdminPassword, new { @id = "database_admin_password", required = "required" })
-            <label for="database_admin_password">Hasło admina serwera bazy danych</label><br />
-        }
-        else
-        {
-            <input type="radio" id="on_server" name="database" value="4" />
-            <label for="on_server">@Ajax.ActionLink("Istniejąca baza danych na serwerze", "IstallationChangeServerOption", "Home", new { DatabaseOption = 4 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
-        }
-        @Html.HiddenFor(o => o.DatabaseOption)
-    </div>
-    <hr />
-    <h2>Tworzenie konta administratora SimpleBlog</h2>
-    <div id="simpleBlog_admin">
-        @Html.TextAreaFor( o => o.SimpleBlogAdminLogin, new { @id = "simpleBlog_admin_login", required = "required" })
-        <label for="simpleBlog_admin_login">Utwórz login dla admina SimpleBlog</label><br />
-        @Html.PasswordFor( o => o.SimpleBlogAdminPassword, new { @id = "simpleBlog_admin_password", required = "required" })
-        <label for="simpleBlog_admin_password">Utwórz hasło dla admina SimpleBlog</label><br />
-    </div>
-    <input type="submit" value="Dalej" />
-}
+            @if (Model.DatabaseOption == 1)
+            {
+                <input type="radio" id="new_local" name="database" value="1" checked="checked" />
+                <label for="new_local">@Ajax.ActionLink("Nowa baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 1 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
+            }
+            else
+            {
+                <input type="radio" id="new_local" name="database" value="1" />
+                <label for="new_local">@Ajax.ActionLink("Nowa baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 1 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
+            }
+            @if (Model.DatabaseOption == 2)
+            {
+                <input type="radio" id="local" name="database" value="2" checked="checked" />
+                <label for="local">@Ajax.ActionLink("Istniejąca baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 2 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
+                @Html.TextAreaFor(o => o.DatabaseName, new { @id = "database_name", required = "required" })
+                <label for="database_name">Nazwa bazy danych</label><br />
+            }
+            else
+            {
+                <input type="radio" id="local" name="database" value="2" />
+                <label for="local">@Ajax.ActionLink("Istniejąca baza danych lokalnie", "IstallationChangeServerOption", "Home", new { DatabaseOption = 2 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
+            }
+            @if (Model.DatabaseOption == 4)
+            {
+                <input type="radio" id="on_server" name="database" value="4" checked="checked" />
+                <label for="on_server">@Ajax.ActionLink("Istniejąca baza danych na serwerze", "IstallationChangeServerOption", "Home", new { DatabaseOption = 4 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
+                @Html.TextAreaFor(o => o.DatabaseServer, new { @id = "database_server", required = "required" })
+                <label for="database_name">Adres serwera bazy danych</label><br />
+                @Html.TextAreaFor(o => o.DatabaseName, new { @id = "database_name", required = "required" })
+                <label for="database_name">Nazwa bazy danych</label><br />
+                @Html.TextAreaFor(o => o.DatabaseAdminLogin, new { @id = "database_admin_login", required = "required" })
+                <label for="database_admin_login">Login admina serwera bazy danych</label><br />
+                @Html.PasswordFor(o => o.DatabaseAdminPassword, new { @id = "database_admin_password", required = "required" })
+                <label for="database_admin_password">Hasło admina serwera bazy danych</label><br />
+            }
+            else
+            {
+                <input type="radio" id="on_server" name="database" value="4" />
+                <label for="on_server">@Ajax.ActionLink("Istniejąca baza danych na serwerze", "IstallationChangeServerOption", "Home", new { DatabaseOption = 4 }, new AjaxOptions() { UpdateTargetId = "database_form", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })</label><br />
+            }
+            @Html.HiddenFor(o => o.DatabaseOption)
+        </div>
+        <hr />
+        <h2>Tworzenie konta administratora SimpleBlog</h2>
+        <div id="simpleBlog_admin">
+            @Html.TextAreaFor(o => o.SimpleBlogAdminLogin, new { @id = "simpleBlog_admin_login", required = "required" })
+            <label for="simpleBlog_admin_login">Utwórz login dla admina SimpleBlog</label><br />
+            @Html.PasswordFor(o => o.SimpleBlogAdminPassword, new { @id = "simpleBlog_admin_password", required = "required" })
+            <label for="simpleBlog_admin_password">Utwórz hasło dla admina SimpleBlog (przynajmniej 6 znaków)</label><br />
+        </div>
+        <input type="submit" value="Dalej" />
+    }
+</div>

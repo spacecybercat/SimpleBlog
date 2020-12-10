@@ -1,20 +1,13 @@
 ﻿@model SimpleBlog.ViewModels.ArticlesCategoriesManageViewModel
 @{
     ViewBag.Title = "Zarządzanie kategoriami artykułów";
-    Layout = "~/Views/Shared/_LayoutBackoffice.cshtml";
+    Layout = "~/Views/Shared/_LayoutBackofficeArticlesManage.cshtml";
 }
 @if (Request.IsAuthenticated)
 {
     if (User.IsInRole("Admin"))
     {
-        <aside class="mkd-side-menu right" style="left:0px;height:100%;">
-            <div class="mkd-close-side-menu-holder">
-                <div class="mkd-close-side-menu-holder-inner">
-                    <a href="#" target="_self" class="mkd-close-side-menu">
-                        <span aria-hidden="true" class="icon_close"></span>
-                    </a>
-                </div>
-            </div>
+        <aside class="mkd-side-menu right" style="left:0px;height:100%;width:20%!important">
             <div class="widget mkd-image-widget" style="padding: 25px 0 0 0">
                 <a href="#" target="_self"><img src="~/Content/Images/LOGO-FOOTER.png" alt="a" /></a>
             </div>
@@ -37,16 +30,8 @@
 {
     if (User.IsInRole("Admin"))
     {
-        <div class="mkd-full-width">
-            <div class="mkd-full-width-inner">
-                <div class="vc_row wpb_row vc_row-fluid mkd-section vc_custom_1456923366162 mkd-content-aligment-left mkd-grid-section" style="">
-                    <div class="clearfix mkd-section-inner">
-                        <div class="mkd-section-inner-margin clearfix">
-                            <div class="wpb_column vc_column_container vc_col-sm-8 vc_col-lg-10 vc_col-md-10">
-                                <div class="vc_column-inner">
-                                    <div class="wpb_wrapper">
-                                        <div class="wpb_widgetised_column wpb_content_element">
-                                            <div class="wpb_wrapper">
+
+                                            <div class="wpb_wrapper" style="margin-left:30%">
                                                 <br /><br />
                                                 <div class="widget mkd-rpc-holder">
                                                     <div class="mkd-section-title-holder clearfix">
@@ -86,28 +71,7 @@
                                                              }     
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                            </div>                       
 
-
-        @*<h2>Zarządzanie kategoriami artykułów</h2>
-        <p>@Html.ActionLink("Powrót", "Index", "Backoffice")</p>
-        foreach (var category in Model.ArticleCategories)
-        {
-            <p>@category.Name.ToString() @Html.ActionLink("Usuń", "ArticlesCategoriesDelete", new { ArticleCategoryName = category.Name })</p>
-        }
-        using (Html.BeginForm("ArticlesCategoriesManage", "Backoffice", FormMethod.Post))
-        {
-            @Html.TextBoxFor(o => o.ArticlesCategoryAddName, new { @class = "input-text", @placeholder = "Nazwa kategorii..." })
-            <input type="submit" class="button" method="post" value="Dodaj kategorię" />
-        }*@
     }
 }
